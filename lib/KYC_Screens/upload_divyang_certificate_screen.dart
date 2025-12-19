@@ -282,10 +282,10 @@ Your life certificate is currently under verification. You will receive your cer
       appBar: AppBar(
         title: const Center(
           child: Text(
-            'Upload Divyang Certificate ',
+            'Upload Divyang UDID Certificate ',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -308,7 +308,7 @@ Your life certificate is currently under verification. You will receive your cer
                   SizedBox(height: 25),
                   Center(
                     child: Text(
-                      'Click Divyang Certificate Photo',
+                      'Capture UDID Certificate Photo',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -320,7 +320,7 @@ Your life certificate is currently under verification. You will receive your cer
                   ),
                   Center(
                     child: Text(
-                      'दिव्यांग दाखल्याचा फोटो काढा',
+                      'UDID प्रमाणपत्राचा फोटो काढा',
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.black54,
@@ -380,7 +380,7 @@ Your life certificate is currently under verification. You will receive your cer
                             child: ElevatedButton(
                               onPressed: _getImage,
                               child: const Text(
-                                "Click Divyang Certificate Image\nदिव्यांग दाखल्याचा फोटो काढा",
+                                "Click Divyang UDID Certificate \nदिव्यांग दाखल्याचा फोटो काढा",
                                 textAlign: TextAlign.center,
                               ),
                             ),

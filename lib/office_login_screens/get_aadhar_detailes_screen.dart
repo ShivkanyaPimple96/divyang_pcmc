@@ -1,10 +1,9 @@
 import 'dart:convert';
 
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/divyang_detailes_officelogin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-
-import 'photo_click_screen.dart'; // Import the PhotoClickScreen
 
 class GetAadharDetailesScreen extends StatefulWidget {
   final String userId;
@@ -108,7 +107,7 @@ class _GetAadharDetailesScreenState extends State<GetAadharDetailesScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => PhotoClickScreen(
+            builder: (context) => DivyangDetailesOfficeloginScreen(
               userId: widget.userId,
               avakNo: avakNo,
               adharNo: adharNo,

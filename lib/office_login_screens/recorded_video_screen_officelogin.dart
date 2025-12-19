@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:divyang_pimpri_chinchwad_municipal_corporation/device_connect_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/response_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
@@ -17,7 +18,7 @@ class RecordedVideoScreenOfficelogin extends StatefulWidget {
   final bool isFrontCamera;
   // final String ppoNumber;
   // final String mobileNumber;
-  // final String addressEnter;
+  final String addressEnter;
   // final String gender;
   // final String fullName;
   final String userId;
@@ -27,6 +28,9 @@ class RecordedVideoScreenOfficelogin extends StatefulWidget {
   final String mobileNo;
   final String uniqueKey;
   final String lastSubmit;
+  final String gender;
+  final String disabilityType;
+  final String disabilityPercentage;
 
   const RecordedVideoScreenOfficelogin({
     super.key,
@@ -37,7 +41,7 @@ class RecordedVideoScreenOfficelogin extends StatefulWidget {
     required this.isFrontCamera,
     // required this.ppoNumber,
     // required this.mobileNumber,
-    // required this.addressEnter,
+    required this.addressEnter,
     // required this.gender,
     // required this.fullName,
     required this.lastSubmit,
@@ -47,6 +51,9 @@ class RecordedVideoScreenOfficelogin extends StatefulWidget {
     required this.name,
     required this.mobileNo,
     required this.uniqueKey,
+    required this.gender,
+    required this.disabilityType,
+    required this.disabilityPercentage,
   });
 
   @override
@@ -182,10 +189,14 @@ class _RecordedVideoScreenOfficeloginState
       request.fields['name'] = widget.name;
       request.fields['mobileNo'] = widget.mobileNo;
       request.fields['uniqueKey'] = widget.uniqueKey;
+      request.fields['Gender'] = widget.gender;
+      request.fields['DisabilityType'] = widget.disabilityType;
+      request.fields['DisabilityPercentage'] = widget.disabilityPercentage;
+      request.fields['Address'] = widget.addressEnter;
       // request.fields['Latitude'] = _latitude ?? '';
       // request.fields['Longitude'] = _longitude ?? '';
       // request.fields['Address'] = _address ?? '';
-      request.fields['LastSubmit'] = "";
+      request.fields['LastSubmit'] = "Submitted";
 
       // Add video file
       request.files.add(await http.MultipartFile.fromPath(
@@ -213,55 +224,99 @@ class _RecordedVideoScreenOfficeloginState
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => DeviceConnectScreen(
-                // ppoNumber: widget.ppoNumber,
-                // mobileNumber: widget.mobileNumber,
-                // addressEnter: widget.addressEnter,
-                // gender: widget.gender,
-                // fullName: widget.fullName,
-                // // ppoNumber: widget.ppoNumber,
-                // // videoPath: widget.videoPath,
-                // aadhaarNumber: widget.aadhaarNumber,
-                // lastSubmit: "",
-                ),
-          ),
-          // (Route<dynamic> route) => false, // This removes all previous routes
-        );
-        // Navigate to DeclarationPageScreen with required parameters
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => UploadDivyangCertificateScreen(
-        //       ppoNumber: widget.ppoNumber,
-        //       mobileNumber: widget.mobileNumber,
-        //       addressEnter: widget.addressEnter,
-        //       gender: widget.gender,
-        //       fullName: widget.fullName,
-        //       // ppoNumber: widget.ppoNumber,
-        //       // videoPath: widget.videoPath,
-        //       aadhaarNumber: widget.aadhaarNumber,
-        //       lastSubmit: "",
-        //     ),
-        //   ),
-        //   // (Route<dynamic> route) => false, // This removes all previous routes
-        // );
-      } else {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text('Note'),
-            content: Text(
-              'Failed to submit video data. Please try again.\nव्हिडिओ सबमिट करण्यात अयशस्वी. कृपया पुन्हा प्रयत्न करा',
+            builder: (context) => ResponseLoginScreen(
+              // ppoNumber: widget.ppoNumber,
+              mobileNumber: widget.mobileNo,
+              addressEnter: widget.addressEnter,
+              gender: widget.gender,
+              fullName: widget.name,
+              message:
+                  '''You have successfully completed the process for your life certificate.
+Your life certificate is currently under verification. You will receive your certificate soon. Thank you for your patience
+
+तुम्ही तुमच्या जीवन प्रमाणपत्राची प्रक्रिया यशस्वीपणे पूर्ण केली आहे.
+तुमचे जीवन प्रमाणपत्र सध्या पडताळणीखाली आहे. तुम्हाला तुमचे प्रमाणपत्र लवकरच मिळेल.
+तुमच्या संयमाबद्दल धन्यवाद.''',
+              success: true,
+              // verificationStatus: verificationStatus,
             ),
-            actions: [
-              TextButton(
-                child: Text('OK'),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-            ],
+          ),
+        );
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ResponseLoginScreen(
+              // ppoNumber: widget.ppoNumber,
+              // mobileNumber: widget.mobileNumber,
+              // addressEnter: widget.addressEnter,
+              // gender: widget.gender,
+              // fullName: widget.fullName,
+              // ppoNumber: widget.ppoNumber,
+              mobileNumber: widget.mobileNo,
+              addressEnter: widget.addressEnter,
+              gender: widget.gender,
+              fullName: widget.name,
+              message:
+                  'Failed to submit data. Please try again.\nडेटा सबमिट करण्यात अयशस्वी. कृपया पुन्हा प्रयत्न करा',
+              success: false,
+              // verificationStatus: 'Failed',
+            ),
           ),
         );
       }
+      //   Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (context) => DeviceConnectScreen(
+      //           // ppoNumber: widget.ppoNumber,
+      //           // mobileNumber: widget.mobileNumber,
+      //           // addressEnter: widget.addressEnter,
+      //           // gender: widget.gender,
+      //           // fullName: widget.fullName,
+      //           // // ppoNumber: widget.ppoNumber,
+      //           // // videoPath: widget.videoPath,
+      //           // aadhaarNumber: widget.aadhaarNumber,
+      //           // lastSubmit: "",
+      //           ),
+      //     ),
+      //     // (Route<dynamic> route) => false, // This removes all previous routes
+      //   );
+      //   // Navigate to DeclarationPageScreen with required parameters
+      //   // Navigator.push(
+      //   //   context,
+      //   //   MaterialPageRoute(
+      //   //     builder: (context) => UploadDivyangCertificateScreen(
+      //   //       ppoNumber: widget.ppoNumber,
+      //   //       mobileNumber: widget.mobileNumber,
+      //   //       addressEnter: widget.addressEnter,
+      //   //       gender: widget.gender,
+      //   //       fullName: widget.fullName,
+      //   //       // ppoNumber: widget.ppoNumber,
+      //   //       // videoPath: widget.videoPath,
+      //   //       aadhaarNumber: widget.aadhaarNumber,
+      //   //       lastSubmit: "",
+      //   //     ),
+      //   //   ),
+      //   //   // (Route<dynamic> route) => false, // This removes all previous routes
+      //   // );
+      // } else {
+      //   showDialog(
+      //     context: context,
+      //     builder: (context) => AlertDialog(
+      //       title: Text('Note'),
+      //       content: Text(
+      //         'Failed to submit video data. Please try again.\nव्हिडिओ सबमिट करण्यात अयशस्वी. कृपया पुन्हा प्रयत्न करा',
+      //       ),
+      //       actions: [
+      //         TextButton(
+      //           child: Text('OK'),
+      //           onPressed: () => Navigator.of(context).pop(),
+      //         ),
+      //       ],
+      //     ),
+      //   );
+      // }
     } on TimeoutException {
       setState(() => _isLoading = false);
       showDialog(

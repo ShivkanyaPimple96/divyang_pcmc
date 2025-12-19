@@ -28,6 +28,9 @@ class VedioRecordScreenOfficelogin extends StatefulWidget {
   final String mobileNo;
   final String uniqueKey;
   final String lastSubmit;
+  final String gender;
+  final String disabilityType;
+  final String disabilityPercentage;
   //    final String frontImagePath;
   // final String backImagePath;
 
@@ -50,6 +53,9 @@ class VedioRecordScreenOfficelogin extends StatefulWidget {
     required this.name,
     required this.mobileNo,
     required this.uniqueKey,
+    required this.gender,
+    required this.disabilityType,
+    required this.disabilityPercentage,
   });
 
   @override
@@ -205,7 +211,7 @@ class _VedioRecordScreenOfficeloginState
             // aadhaarNumber: widget.aadhaarNumber,
             // ppoNumber: widget.ppoNumber,
             // mobileNumber: widget.mobileNumber,
-            // addressEnter: widget.addressEnter,
+            addressEnter: widget.address,
             // gender: widget.gender,
             // fullName: widget.fullName,
             userId: widget.userId,
@@ -215,6 +221,9 @@ class _VedioRecordScreenOfficeloginState
             mobileNo: widget.mobileNo,
             uniqueKey: widget.uniqueKey,
             isFrontCamera: isFrontCamera,
+            gender: widget.gender,
+            disabilityType: widget.disabilityType,
+            disabilityPercentage: widget.disabilityPercentage,
             lastSubmit: "",
             // frontImagePath: widget.frontImagePath, // Pass front image path
             // backImagePath: widget.backImagePath,

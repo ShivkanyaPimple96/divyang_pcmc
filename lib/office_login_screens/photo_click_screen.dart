@@ -17,6 +17,10 @@ class PhotoClickScreen extends StatefulWidget {
   // final String fullName;
   // final String frontImagePath;
   // final String backImagePath;
+  final String address;
+  final String gender;
+  final String disabilityType;
+  final String disabilityPercentage;
   final String lastSubmit;
   final String userId;
   final String avakNo;
@@ -42,6 +46,10 @@ class PhotoClickScreen extends StatefulWidget {
     required this.name,
     required this.mobileNo,
     required this.uniqueKey,
+    required this.address,
+    required this.gender,
+    required this.disabilityType,
+    required this.disabilityPercentage,
   });
 
   @override
@@ -383,6 +391,9 @@ class _PhotoClickScreenState extends State<PhotoClickScreen> {
             latitude: _latitude!,
             longitude: _longitude!,
             address: _address!,
+            gender: widget.gender,
+            disabilityType: widget.disabilityType,
+            disabilityPercentage: widget.disabilityPercentage,
 
             lastSubmit: "",
             // frontImagePath: widget.frontImagePath,
