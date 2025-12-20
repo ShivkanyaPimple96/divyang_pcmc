@@ -377,7 +377,7 @@ class _VedioRecordScreenOfficeloginState
                           const SizedBox(height: 20),
                           const Center(
                             child: Text(
-                              'Click Divyang Video',
+                              'Capture Divyang Video',
                               style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
@@ -413,7 +413,7 @@ class _VedioRecordScreenOfficeloginState
                                       left: 40.0,
                                       right: 10.0,
                                       child: Text(
-                                        'Make sure your face is clearly visible\nDo not look left or right\nPlease look front of the camera',
+                                        'Make sure your face is clearly visible\nLook left or right\nPlease look front of the camera',
                                         style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.white,
@@ -480,7 +480,7 @@ class _VedioRecordScreenOfficeloginState
                                       },
                                 icon: const Icon(
                                   Icons.videocam,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                 ),
                                 label: const Text(
                                   'Start Recording\nव्हिडिओ रेकॉर्ड करा',
