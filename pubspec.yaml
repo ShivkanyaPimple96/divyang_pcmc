@@ -63,6 +63,7 @@ dependencies:
   shared_preferences: ^2.3.4
   provider: ^6.1.2
   lottie: ^3.3.0
+  flutter_screenutil: ^5.9.3
   # image_cropper: ^10.0.0+1
 
 
@@ -96,6 +97,7 @@ flutter:
      - assets/icon/Bank_of_Maharashtra_logo.png
      - assets/icon/policy_image.png
      - assets/images/pcmc_logo.jpeg
+     - assets/images/capture_image.jpeg
      
 
   # An image asset can refer to one or more resolution-specific "variants", see
