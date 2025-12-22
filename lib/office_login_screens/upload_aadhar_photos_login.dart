@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/upload_UDID_certificate_screen_login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:http/http.dart' as http;
@@ -220,92 +221,6 @@ class _UploadAadharPhotosLoginState extends State<UploadAadharPhotosLogin> {
     // and navigation happens in success case
   }
 
-  // Future<void> _submitAadharPhotos() async {
-  //   if (_frontImage == null || _backImage == null) return;
-
-  //   // Show confirmation dialog first
-  //   bool? confirmSubmission = await _showConfirmationDialog();
-  //   if (confirmSubmission != true) return;
-
-  //   setState(() => _isCompressing = true);
-
-  //   try {
-  //     // Compress images again before submission
-  //     final compressedFront = await _compressImage(_frontImage!);
-  //     final compressedBack = await _compressImage(_backImage!);
-
-  //     var request = http.MultipartRequest(
-  //       'POST',
-  //       Uri.parse('https://nmcpensioner.com/api/aadhar/submit'),
-  //     );
-
-  //     // Add all required fields to request
-  //     request.fields.addAll({
-  //       'AadhaarNumber': widget.aadhaarNumber,
-  //       'PPONumber': widget.ppoNumber,
-  //       'MobileNumber': widget.mobileNumber,
-  //       'Address': widget.addressEnter,
-  //       'Gender': widget.gender,
-  //       'FullName': widget.fullName,
-  //     });
-
-  //     // Add front and back images
-  //     request.files.add(await http.MultipartFile.fromPath(
-  //       'AadharFront',
-  //       compressedFront?.path ?? _frontImage!.path,
-  //       filename: path.basename(compressedFront?.path ?? _frontImage!.path),
-  //       contentType: MediaType('image', 'jpeg'),
-  //     ));
-
-  //     request.files.add(await http.MultipartFile.fromPath(
-  //       'AadharBack',
-  //       compressedBack?.path ?? _backImage!.path,
-  //       filename: path.basename(compressedBack?.path ?? _backImage!.path),
-  //       contentType: MediaType('image', 'jpeg'),
-  //     ));
-
-  //     // Debug print request details
-  //     debugPrint('Request fields: ${request.fields}');
-  //     debugPrint(
-  //         'Request files: ${request.files.map((f) => '${f.field}: ${f.filename}')}');
-
-  //     // Send the request
-  //     var response = await request.send().timeout(const Duration(seconds: 240));
-  //     String responseBody = await response.stream.bytesToString();
-  //     debugPrint('Response status: ${response.statusCode}');
-  //     debugPrint('Response body: $responseBody');
-
-  //     if (!mounted) return;
-
-  //     if (response.statusCode == 200) {
-  //       // Navigate to next screen on success
-  //       _navigateToKYCScreen();
-  //     } else {
-  //       await _showErrorDialog(
-  //         'Failed to submit Aadhar photos. Please try again.\n'
-  //         'आधार फोटो सबमिट करण्यात अयशस्वी. कृपया पुन्हा प्रयत्न करा.',
-  //       );
-  //     }
-  //   } on TimeoutException {
-  //     if (!mounted) return;
-  //     await _showErrorDialog(
-  //       'The request timed out. Please check your internet connection and try again.\n'
-  //       'विनंतीची मुदत संपली. कृपया तुमचे इंटरनेट कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.',
-  //       title: 'Request Timeout',
-  //     );
-  //   } catch (e) {
-  //     if (!mounted) return;
-  //     await _showErrorDialog(
-  //       'Please check your internet connection\n कृपया तुमचे इंटरनेट कनेक्शन तपासा.',
-  //     );
-  //     debugPrint('Error during submission: $e');
-  //   } finally {
-  //     if (mounted) {
-  //       setState(() => _isCompressing = false);
-  //     }
-  //   }
-  // }
-
   Future<bool?> _showConfirmationDialog() async {
     return showDialog<bool>(
       context: context,
@@ -399,20 +314,21 @@ class _UploadAadharPhotosLoginState extends State<UploadAadharPhotosLogin> {
   }
 
   void _navigateToKYCScreen() {
-    // Navigator.pushReplacement(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => PhotoClickKYCScreen(
-    //       aadhaarNumber: widget.aadhaarNumber,
-    //       ppoNumber: widget.ppoNumber,
-    //       mobileNumber: widget.mobileNumber,
-    //       addressEnter: widget.addressEnter,
-    //       gender: widget.gender,
-    //       fullName: widget.fullName,
-    //       lastSubmit: "",
-    //     ),
-    //   ),
-    // );
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => UploadUdidCertificateScreenLogin(
+          adharNo: widget.adharNo,
+          name: widget.name,
+          mobileNo: widget.mobileNo,
+          gender: widget.gender,
+
+          // fullName: widget.fullName,
+
+          lastSubmit: "",
+        ),
+      ),
+    );
   }
 
   @override

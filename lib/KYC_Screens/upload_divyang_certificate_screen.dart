@@ -218,7 +218,7 @@ class _UploadDivyangCertificateScreenState
           context,
           MaterialPageRoute(
             builder: (context) => ResponseScreen(
-              ppoNumber: widget.ppoNumber,
+              // ppoNumber: widget.ppoNumber,
               mobileNumber: widget.mobileNumber,
               addressEnter: widget.addressEnter,
               gender: widget.gender,
@@ -240,7 +240,7 @@ Your life certificate is currently under verification. You will receive your cer
           context,
           MaterialPageRoute(
             builder: (context) => ResponseScreen(
-              ppoNumber: widget.ppoNumber,
+              // ppoNumber: widget.ppoNumber,
               mobileNumber: widget.mobileNumber,
               addressEnter: widget.addressEnter,
               gender: widget.gender,
@@ -261,7 +261,7 @@ Your life certificate is currently under verification. You will receive your cer
         context,
         MaterialPageRoute(
           builder: (context) => ResponseScreen(
-            ppoNumber: widget.ppoNumber,
+            // ppoNumber: widget.ppoNumber,
             mobileNumber: widget.mobileNumber,
             addressEnter: widget.addressEnter,
             gender: widget.gender,

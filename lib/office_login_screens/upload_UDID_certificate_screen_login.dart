@@ -10,47 +10,53 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
-class UploadUdidCertificateScreen extends StatefulWidget {
+class UploadUdidCertificateScreenLogin extends StatefulWidget {
   // final String videoPath;
   // final String recordedDate;
   // final String recordedTime;
   // final String imagePath;
-  final String aadhaarNumber;
+  // final String aadhaarNumber;
   final String lastSubmit;
+  final String adharNo;
+  final String name;
+  final String mobileNo;
   // final String latitude;
   // final String longitude;
   // final String address;
-  final String ppoNumber;
-  final String mobileNumber;
-  final String addressEnter;
+  // final String ppoNumber;
+  // final String mobileNumber;
+  // final String addressEnter;
   final String gender;
-  final String fullName;
+  // final String fullName;
 
-  const UploadUdidCertificateScreen({
+  const UploadUdidCertificateScreenLogin({
     super.key,
     // required this.videoPath,
     // required this.recordedDate,
     // required this.recordedTime,
     // required this.imagePath,
-    required this.aadhaarNumber,
+    // required this.aadhaarNumber,
     required this.lastSubmit,
-    required this.ppoNumber,
-    required this.mobileNumber,
-    required this.addressEnter,
+    // required this.ppoNumber,
+    // required this.mobileNumber,
+    // required this.addressEnter,
     required this.gender,
-    required this.fullName,
+    required this.adharNo,
+    required this.name,
+    required this.mobileNo,
+    // required this.fullName,
     // required this.latitude,
     // required this.longitude,
     // required this.address,
   });
 
   @override
-  _UploadUdidCertificateScreenState createState() =>
-      _UploadUdidCertificateScreenState();
+  _UploadUdidCertificateScreenLoginState createState() =>
+      _UploadUdidCertificateScreenLoginState();
 }
 
-class _UploadUdidCertificateScreenState
-    extends State<UploadUdidCertificateScreen> {
+class _UploadUdidCertificateScreenLoginState
+    extends State<UploadUdidCertificateScreenLogin> {
   File? _image;
   bool _isLoading = false;
 
@@ -184,7 +190,7 @@ class _UploadUdidCertificateScreenState
       );
 
       // Adding fields to the request
-      request.fields['AadhaarNumber'] = widget.aadhaarNumber;
+      request.fields['AadhaarNumber'] = widget.adharNo;
       // request.fields['Latitude'] = widget.latitude;
       // request.fields['Longitude'] = widget.longitude;
       // request.fields['LiveAddress'] = widget.address;
@@ -218,11 +224,12 @@ class _UploadUdidCertificateScreenState
           context,
           MaterialPageRoute(
             builder: (context) => ResponseScreen(
-              ppoNumber: widget.ppoNumber,
-              mobileNumber: widget.mobileNumber,
-              addressEnter: widget.addressEnter,
+              // ppoNumber: widget.ppoNumber,
+              mobileNumber: widget.mobileNo,
+              addressEnter: widget.adharNo,
+              // aadharNumber: widget.adharNo,
               gender: widget.gender,
-              fullName: widget.fullName,
+              fullName: widget.name,
               message:
                   '''You have successfully completed the process for your life certificate.
 Your life certificate is currently under verification. You will receive your certificate soon. Thank you for your patience
@@ -240,11 +247,16 @@ Your life certificate is currently under verification. You will receive your cer
           context,
           MaterialPageRoute(
             builder: (context) => ResponseScreen(
-              ppoNumber: widget.ppoNumber,
-              mobileNumber: widget.mobileNumber,
-              addressEnter: widget.addressEnter,
+              mobileNumber: widget.mobileNo,
+              addressEnter: widget.adharNo,
+              // aadharNumber: widget.adharNo,
               gender: widget.gender,
-              fullName: widget.fullName,
+              fullName: widget.name,
+              // ppoNumber: widget.ppoNumber,
+              // mobileNumber: widget.mobileNumber,
+              // addressEnter: widget.addressEnter,
+              // gender: widget.gender,
+              // fullName: widget.fullName,
               message:
                   'Failed to submit data. Please try again.\nडेटा सबमिट करण्यात अयशस्वी. कृपया पुन्हा प्रयत्न करा',
               success: false,
@@ -261,11 +273,16 @@ Your life certificate is currently under verification. You will receive your cer
         context,
         MaterialPageRoute(
           builder: (context) => ResponseScreen(
-            ppoNumber: widget.ppoNumber,
-            mobileNumber: widget.mobileNumber,
-            addressEnter: widget.addressEnter,
+            mobileNumber: widget.mobileNo,
+            addressEnter: widget.adharNo,
+            // aadharNumber: widget.adharNo,
             gender: widget.gender,
-            fullName: widget.fullName,
+            fullName: widget.name,
+            // ppoNumber: widget.ppoNumber,
+            // mobileNumber: widget.mobileNumber,
+            // addressEnter: widget.addressEnter,
+            // gender: widget.gender,
+            // fullName: widget.fullName,
             message:
                 'Failed to submit data. Please try again.\nडेटा सबमिट करण्यात अयशस्वी. कृपया पुन्हा प्रयत्न करा',
             success: false,

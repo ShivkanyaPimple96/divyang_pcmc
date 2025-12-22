@@ -265,58 +265,6 @@ Your life certificate is currently under verification. You will receive your cer
           ),
         );
       }
-      //   Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) => DeviceConnectScreen(
-      //           // ppoNumber: widget.ppoNumber,
-      //           // mobileNumber: widget.mobileNumber,
-      //           // addressEnter: widget.addressEnter,
-      //           // gender: widget.gender,
-      //           // fullName: widget.fullName,
-      //           // // ppoNumber: widget.ppoNumber,
-      //           // // videoPath: widget.videoPath,
-      //           // aadhaarNumber: widget.aadhaarNumber,
-      //           // lastSubmit: "",
-      //           ),
-      //     ),
-      //     // (Route<dynamic> route) => false, // This removes all previous routes
-      //   );
-      //   // Navigate to DeclarationPageScreen with required parameters
-      //   // Navigator.push(
-      //   //   context,
-      //   //   MaterialPageRoute(
-      //   //     builder: (context) => UploadDivyangCertificateScreen(
-      //   //       ppoNumber: widget.ppoNumber,
-      //   //       mobileNumber: widget.mobileNumber,
-      //   //       addressEnter: widget.addressEnter,
-      //   //       gender: widget.gender,
-      //   //       fullName: widget.fullName,
-      //   //       // ppoNumber: widget.ppoNumber,
-      //   //       // videoPath: widget.videoPath,
-      //   //       aadhaarNumber: widget.aadhaarNumber,
-      //   //       lastSubmit: "",
-      //   //     ),
-      //   //   ),
-      //   //   // (Route<dynamic> route) => false, // This removes all previous routes
-      //   // );
-      // } else {
-      //   showDialog(
-      //     context: context,
-      //     builder: (context) => AlertDialog(
-      //       title: Text('Note'),
-      //       content: Text(
-      //         'Failed to submit video data. Please try again.\nव्हिडिओ सबमिट करण्यात अयशस्वी. कृपया पुन्हा प्रयत्न करा',
-      //       ),
-      //       actions: [
-      //         TextButton(
-      //           child: Text('OK'),
-      //           onPressed: () => Navigator.of(context).pop(),
-      //         ),
-      //       ],
-      //     ),
-      //   );
-      // }
     } on TimeoutException {
       setState(() => _isLoading = false);
       showDialog(

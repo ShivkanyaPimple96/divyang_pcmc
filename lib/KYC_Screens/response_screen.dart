@@ -2,7 +2,7 @@ import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/divya
 import 'package:flutter/material.dart';
 
 class ResponseScreen extends StatelessWidget {
-  final String ppoNumber;
+  // final String ppoNumber;
   final String mobileNumber;
   final String addressEnter;
   final String gender;
@@ -15,7 +15,7 @@ class ResponseScreen extends StatelessWidget {
       {super.key,
       required this.message,
       required this.success,
-      required this.ppoNumber,
+      // required this.ppoNumber,
       required this.mobileNumber,
       required this.addressEnter,
       required this.gender,
