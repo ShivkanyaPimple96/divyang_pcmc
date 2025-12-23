@@ -340,19 +340,19 @@ class _UploadAadharPhotosLoginState extends State<UploadAadharPhotosLogin> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 27, 107, 212),
+        backgroundColor: Colors.yellow,
         title: Text(
-          'Upload Aadhar Card Photos',
+          'Upload Aadhar Card Photos [Step-3]',
           style: TextStyle(
-            color: Colors.white,
-            fontSize: width * 0.05,
+            color: Colors.black,
+            fontSize: width * 0.04,
             fontWeight: FontWeight.bold,
           ),
         ),
         centerTitle: true,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: Icon(Icons.arrow_back, color: Colors.black, size: width * 0.07),
           onPressed: () {},
         ),
       ),
@@ -383,7 +383,7 @@ class _UploadAadharPhotosLoginState extends State<UploadAadharPhotosLogin> {
                 ),
                 SizedBox(height: height * 0.025),
                 Text(
-                  'Click Aadhar Card Back Photo\nआधार कार्डचा मागील फोटो काढा.',
+                  'Capture Aadhar Card Back Photo\nआधार कार्डचा मागील फोटो काढा.',
                   style: TextStyle(
                     fontSize: width * 0.045,
                     fontWeight: FontWeight.bold,
@@ -407,14 +407,15 @@ class _UploadAadharPhotosLoginState extends State<UploadAadharPhotosLogin> {
                   onPressed: _frontImage != null &&
                           _backImage != null &&
                           !_isCompressing
-                      ? _submitAadharPhotos
+                      // ? _submitAadharPhotos
+                      ? _navigateToKYCScreen
                       : null,
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(
                       horizontal: width * 0.0875,
                       vertical: height * 0.01,
                     ),
-                    backgroundColor: const Color.fromARGB(255, 27, 107, 212),
+                    backgroundColor: Colors.yellow,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -454,7 +455,7 @@ class _UploadAadharPhotosLoginState extends State<UploadAadharPhotosLogin> {
                             'Submit',
                             style: TextStyle(
                               fontSize: width * 0.05,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                   ),
@@ -507,7 +508,7 @@ class _UploadAadharPhotosLoginState extends State<UploadAadharPhotosLogin> {
             ),
           ],
           border: Border.all(
-            color: const Color(0xFF92B7F7),
+            color: Colors.yellow,
             width: 1.5,
           ),
         ),

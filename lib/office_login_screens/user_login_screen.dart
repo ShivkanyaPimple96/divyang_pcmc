@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:divyang_pimpri_chinchwad_municipal_corporation/utils/responsive_size.dart';
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/get_aadhar_detailes_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/enter_aadhar_number_screen_login.dart';
 
 class UserLoginScreen extends StatefulWidget {
   const UserLoginScreen({super.key});
@@ -61,7 +61,8 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => GetAadharDetailesScreen(userId: userId),
+                  builder: (context) =>
+                      EnterAadharNumberScreenLogin(userId: userId),
                 ),
               );
             });

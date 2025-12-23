@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/upload_aadhar_photos_login.dart';
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/vedio_record_screen_officelogin.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:geocoding/geocoding.dart';
@@ -404,7 +404,7 @@ class _PhotoClickScreenState extends State<PhotoClickScreen> {
         appBar: AppBar(
           backgroundColor: Colors.yellow,
           title: Text(
-            'Upload Photo [Step-4]',
+            'Upload Photo [Step-2]',
             style: TextStyle(
               color: Colors.black,
               fontSize: width * 0.05,
@@ -501,7 +501,7 @@ class _PhotoClickScreenState extends State<PhotoClickScreen> {
                         child: ElevatedButton(
                           onPressed: _isLoading ? null : _getImage,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.yellow,
+                            backgroundColor: Colors.green,
                             foregroundColor: Colors.black,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -521,6 +521,7 @@ class _PhotoClickScreenState extends State<PhotoClickScreen> {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: width * 0.04,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
