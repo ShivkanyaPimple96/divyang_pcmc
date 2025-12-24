@@ -16,6 +16,13 @@ class UploadUdidCertificateScreenLogin extends StatefulWidget {
   final String name;
   final String mobileNo;
   final String gender;
+  final String uididNumber;
+  final String disabilityType;
+  final String disabilityPercentage;
+  final String userId;
+  final String avakNo;
+  final String address;
+  final String uniqueKey;
 
   const UploadUdidCertificateScreenLogin({
     super.key,
@@ -24,6 +31,13 @@ class UploadUdidCertificateScreenLogin extends StatefulWidget {
     required this.adharNo,
     required this.name,
     required this.mobileNo,
+    required this.uididNumber,
+    required this.disabilityType,
+    required this.disabilityPercentage,
+    required this.userId,
+    required this.avakNo,
+    required this.address,
+    required this.uniqueKey,
   });
 
   @override
@@ -162,10 +176,17 @@ class _UploadUdidCertificateScreenLoginState
 
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('https://divyangpcmc.altwise.in/api/aadhar/SubmitAadharData'),
+        Uri.parse('https://divyangpcmc.altwise.in/api/aadhar/PostOffice'),
       );
+      request.fields['AadhaarNumber'] = '615735525318';
+      // request.fields['AadhaarNumber'] = widget.adharNo;
+      request.fields['DisabilityType'] = widget.disabilityType;
+      request.fields['DisabilityPercentage'] = widget.disabilityPercentage;
+      request.fields['name'] = widget.name;
+      request.fields['mobileNo'] = widget.mobileNo;
+      request.fields['uniqueKey'] = widget.uniqueKey;
+      request.fields['Gender'] = widget.gender;
 
-      request.fields['AadhaarNumber'] = widget.adharNo;
       request.fields['LastSubmit'] = "Submitted";
 
       if (compressedIncomeCertificateFile != null) {

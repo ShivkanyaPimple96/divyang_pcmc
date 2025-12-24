@@ -7,7 +7,6 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:path/path.dart' as path;
 
 class UploadAadharPhotosLogin extends StatefulWidget {
@@ -26,6 +25,7 @@ class UploadAadharPhotosLogin extends StatefulWidget {
   final String uniqueKey;
   // final String lastSubmit;
   // final String gender;
+  final String uididNumber;
   final String disabilityType;
   final String disabilityPercentage;
   final String imagePath;
@@ -55,6 +55,7 @@ class UploadAadharPhotosLogin extends StatefulWidget {
     required this.latitude,
     required this.longitude,
     required this.address,
+    required this.uididNumber,
   });
 
   @override
@@ -155,10 +156,12 @@ class _UploadAadharPhotosLoginState extends State<UploadAadharPhotosLogin> {
         // 'Address': widget.addressEnter,
         // 'Gender': widget.gender,
         // 'FullName': widget.fullName,
+
         'aadharNo': widget.adharNo,
         'mobileNo': widget.mobileNo,
         'Name': widget.name,
       });
+      request.fields['AadhaarNumber'] = '615735525318';
 
       // Add front and back images
       request.files.add(await http.MultipartFile.fromPath(
@@ -322,10 +325,16 @@ class _UploadAadharPhotosLoginState extends State<UploadAadharPhotosLogin> {
           name: widget.name,
           mobileNo: widget.mobileNo,
           gender: widget.gender,
+          userId: widget.userId,
+          avakNo: widget.avakNo,
+          uniqueKey: widget.uniqueKey,
+          address: widget.address,
+          uididNumber: widget.uididNumber,
+          disabilityType: widget.disabilityType,
+          disabilityPercentage: widget.disabilityPercentage,
+          lastSubmit: "",
 
           // fullName: widget.fullName,
-
-          lastSubmit: "",
         ),
       ),
     );
@@ -407,8 +416,8 @@ class _UploadAadharPhotosLoginState extends State<UploadAadharPhotosLogin> {
                   onPressed: _frontImage != null &&
                           _backImage != null &&
                           !_isCompressing
-                      // ? _submitAadharPhotos
-                      ? _navigateToKYCScreen
+                      ? _submitAadharPhotos
+                      // ? _navigateToKYCScreen
                       : null,
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(
