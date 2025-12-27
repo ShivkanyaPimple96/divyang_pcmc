@@ -1,5 +1,4 @@
 import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/Home_Screen.dart';
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/divyang_detailes_screen.dart';
 import 'package:flutter/material.dart';
 
 class ResponseLoginScreen extends StatelessWidget {

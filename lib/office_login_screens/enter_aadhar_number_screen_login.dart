@@ -21,7 +21,6 @@ class _EnterAadharNumberScreenLoginState
   bool _isLoading = false;
   Map<String, dynamic>? _apiResponse;
   String _errorMessage = '';
-  // bool _showKYCButton = false;
 
   // Validate Aadhar number (basic validation for 12 digits)
   String? _validateAadhar(String? value) {
@@ -42,7 +41,6 @@ class _EnterAadharNumberScreenLoginState
       _isLoading = true;
       _apiResponse = null;
       _errorMessage = '';
-      // _showKYCButton = false;
     });
 
     try {
@@ -61,8 +59,8 @@ class _EnterAadharNumberScreenLoginState
 
         // Check the response code from the API
         if (data['code'] == "200") {
-          // Automatically navigate to the next screen
-          _navigateToPhotoClickScreen();
+          // Call POST API before navigation
+          await _storeAadharData(data);
         } else if (data['code'] == "201") {
           // Show popup with the message
           _showPopupMessage(
@@ -89,37 +87,85 @@ class _EnterAadharNumberScreenLoginState
     }
   }
 
-  void _navigateToPhotoClickScreen() {
-    if (_apiResponse != null && _apiResponse!['code'] == "200") {
+  Future<void> _storeAadharData(Map<String, dynamic> data) async {
+    try {
       final List<dynamic> dataList =
-          _apiResponse!['allData'] is List ? _apiResponse!['allData'] : [];
-      if (dataList.isNotEmpty) {
-        final aadharData = dataList.first;
+          data['allData'] is List ? data['allData'] : [];
 
-        // Extract all fields with null safety
-        final String avakNo = aadharData['avakNo']?.toString() ?? 'N/A';
-        final String adharNo = aadharData['adharNo']?.toString() ?? 'N/A';
-        final String name = aadharData['name']?.toString() ?? 'N/A';
-        final String mobileNo = aadharData['mobileNo']?.toString() ?? 'N/A';
-        final String uniqueKey = aadharData['uniqueKey']?.toString() ?? 'N/A';
+      if (dataList.isEmpty) {
+        _showPopupMessage('Error', 'No data available to store');
+        return;
+      }
 
-        // Navigate to DivyangDetailesOfficeloginScreen
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => DivyangDetailesOfficeloginScreen(
-              userId: widget.userId,
-              avakNo: avakNo,
-              adharNo: adharNo,
-              name: name,
-              mobileNo: mobileNo,
-              uniqueKey: uniqueKey,
-              lastSubmit: '',
-            ),
-          ),
+      final aadharData = dataList.first;
+
+      // Prepare the data object for POST request
+      final Map<String, dynamic> postData = {
+        "avakNo": aadharData['avakNo']?.toString() ?? '',
+        "adharNo": aadharData['adharNo']?.toString() ?? '',
+        "name": aadharData['name']?.toString() ?? '',
+        "mobileNo": aadharData['mobileNo']?.toString() ?? '',
+        "uniqueKey": aadharData['uniqueKey']?.toString() ?? '',
+      };
+
+      print('POST Data: ${json.encode(postData)}');
+
+      // Call POST API
+      final url = Uri.parse('https://divyangpcmc.altwise.in/api/aadhar/Store');
+      final response = await http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json.encode(postData),
+      );
+
+      print('POST Status Code: ${response.statusCode}');
+      print('POST Response Body: ${response.body}');
+
+      if (response.statusCode == 200) {
+        // POST API successful, navigate to next screen
+        _navigateToPhotoClickScreen(
+          avakNo: postData['avakNo']!,
+          adharNo: postData['adharNo']!,
+          name: postData['name']!,
+          mobileNo: postData['mobileNo']!,
+          uniqueKey: postData['uniqueKey']!,
+        );
+      } else {
+        // POST API failed
+        _showPopupMessage(
+          'Error',
+          'Failed to store data. Status code: ${response.statusCode}',
         );
       }
+    } catch (e) {
+      print('Store Error: ${e.toString()}');
+      _showPopupMessage('Exception', 'Failed to store data: ${e.toString()}');
     }
+  }
+
+  void _navigateToPhotoClickScreen({
+    required String avakNo,
+    required String adharNo,
+    required String name,
+    required String mobileNo,
+    required String uniqueKey,
+  }) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DivyangDetailesOfficeloginScreen(
+          userId: widget.userId,
+          avakNo: avakNo,
+          adharNo: adharNo,
+          name: name,
+          mobileNo: mobileNo,
+          uniqueKey: uniqueKey,
+          lastSubmit: '',
+        ),
+      ),
+    );
   }
 
   void _showPopupMessage(String title, String message) {
@@ -182,7 +228,7 @@ class _EnterAadharNumberScreenLoginState
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Enter Aadhar Numeber Screen ',
+            'Enter Aadhar Number Screen',
             style: TextStyle(
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
           ),
@@ -466,6 +512,10 @@ class _EnterAadharNumberScreenLoginState
 
 //   @override
 //   Widget build(BuildContext context) {
+//     final size = MediaQuery.of(context).size;
+//     final width = size.width;
+//     final height = size.height;
+
 //     return SafeArea(
 //       child: Scaffold(
 //         appBar: AppBar(
@@ -478,18 +528,13 @@ class _EnterAadharNumberScreenLoginState
 //         ),
 //         body: SingleChildScrollView(
 //           child: Padding(
-//             padding: const EdgeInsets.all(20.0),
+//             padding: EdgeInsets.all(width * 0.05),
 //             child: Form(
 //               key: _formKey,
 //               child: Column(
 //                 crossAxisAlignment: CrossAxisAlignment.start,
 //                 children: [
-//                   // const SizedBox(height: 20),
-//                   // Text(
-//                   //   'User ID is: ${widget.userId}',
-//                   //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//                   // ),
-//                   const SizedBox(height: 20),
+//                   SizedBox(height: height * 0.025),
 //                   const Text(
 //                     'Enter Aadhar Number (आधार क्रमांक टाका):',
 //                     style: TextStyle(
@@ -497,7 +542,7 @@ class _EnterAadharNumberScreenLoginState
 //                       fontWeight: FontWeight.bold,
 //                     ),
 //                   ),
-//                   const SizedBox(height: 20),
+//                   SizedBox(height: height * 0.025),
 //                   TextFormField(
 //                     controller: _aadharController,
 //                     keyboardType: TextInputType.number,
@@ -515,7 +560,7 @@ class _EnterAadharNumberScreenLoginState
 //                     ),
 //                     validator: _validateAadhar,
 //                   ),
-//                   const SizedBox(height: 10),
+//                   SizedBox(height: height * 0.012),
 //                   const Text(
 //                     'Enter your 12-digit Aadhar number without spaces',
 //                     style: TextStyle(
@@ -523,23 +568,23 @@ class _EnterAadharNumberScreenLoginState
 //                       fontSize: 13,
 //                     ),
 //                   ),
-//                   const SizedBox(height: 30),
+//                   SizedBox(height: height * 0.038),
 //                   SizedBox(
 //                     width: double.infinity,
 //                     child: ElevatedButton(
 //                       onPressed: _isLoading ? null : _submitForm,
 //                       style: ElevatedButton.styleFrom(
 //                         backgroundColor: Colors.yellow,
-//                         padding: const EdgeInsets.symmetric(vertical: 16),
+//                         padding: EdgeInsets.symmetric(vertical: height * 0.02),
 //                         shape: RoundedRectangleBorder(
 //                           borderRadius: BorderRadius.circular(8),
 //                         ),
 //                       ),
 //                       child: _isLoading
-//                           ? const SizedBox(
-//                               width: 20,
-//                               height: 20,
-//                               child: CircularProgressIndicator(
+//                           ? SizedBox(
+//                               width: width * 0.05,
+//                               height: width * 0.05,
+//                               child: const CircularProgressIndicator(
 //                                 color: Colors.white,
 //                                 strokeWidth: 2,
 //                               ),
@@ -554,14 +599,14 @@ class _EnterAadharNumberScreenLoginState
 //                             ),
 //                     ),
 //                   ),
-//                   const SizedBox(height: 20),
+//                   SizedBox(height: height * 0.025),
 
 //                   // Display API response or error
 //                   if (_isLoading)
 //                     const Center(child: CircularProgressIndicator())
 //                   else if (_errorMessage.isNotEmpty)
 //                     Padding(
-//                       padding: const EdgeInsets.symmetric(vertical: 16.0),
+//                       padding: EdgeInsets.symmetric(vertical: height * 0.02),
 //                       child: Text(
 //                         _errorMessage,
 //                         style: const TextStyle(color: Colors.red, fontSize: 16),

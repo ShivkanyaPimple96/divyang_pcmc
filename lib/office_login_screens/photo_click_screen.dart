@@ -177,7 +177,7 @@ class _PhotoClickScreenState extends State<PhotoClickScreen> {
         Uri.parse('https://divyangpcmc.altwise.in/api/aadhar/PostOffice'),
       );
 
-      request.fields['AadhaarNumber'] = '615735525318';
+      request.fields['AadhaarNumber'] = widget.adharNo;
       request.fields['userId'] = widget.userId;
       request.fields['avakNo'] = widget.avakNo;
       request.fields['adharNo'] = widget.adharNo;
