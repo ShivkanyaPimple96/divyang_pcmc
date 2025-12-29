@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/response_screen.dart';
 import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/response_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -179,8 +178,8 @@ class _UploadUdidCertificateScreenLoginState
         'POST',
         Uri.parse('https://divyangpcmc.altwise.in/api/aadhar/PostOffice'),
       );
-      request.fields['AadhaarNumber'] = '615735525318';
-      // request.fields['AadhaarNumber'] = widget.adharNo;
+      // request.fields['AadhaarNumber'] = '615735525318';
+      request.fields['AadhaarNumber'] = widget.adharNo;
       request.fields['DisabilityType'] = widget.disabilityType;
       request.fields['DisabilityPercentage'] = widget.disabilityPercentage;
       request.fields['name'] = widget.name;
@@ -426,38 +425,6 @@ Your life certificate is currently under verification. You will receive your cer
                         ),
                       ),
                     ),
-              // SizedBox(height: height * 0.04),
-              // _isLoading
-              //     ? CircularProgressIndicator(
-              //         valueColor: AlwaysStoppedAnimation<Color>(Colors.yellow),
-              //       )
-              //     : SizedBox(
-              //         width: width * 0.85,
-              //         child: ElevatedButton(
-              //           onPressed: () => submitAllData(context),
-              //           style: ElevatedButton.styleFrom(
-              //             backgroundColor: Colors.yellow,
-              //             foregroundColor: Colors.black,
-              //             shape: RoundedRectangleBorder(
-              //               borderRadius: BorderRadius.circular(30),
-              //             ),
-              //             padding: EdgeInsets.symmetric(
-              //               horizontal: width * 0.1,
-              //               vertical: height * 0.018,
-              //             ),
-              //             elevation: 5,
-              //           ),
-              //           child: Text(
-              //             'Submit Divyang Certificate\nदिव्यांग सर्टिफिकेट सबमिट करा',
-              //             style: TextStyle(
-              //               fontSize: width * 0.045,
-              //               fontWeight: FontWeight.bold,
-              //               color: Colors.black,
-              //             ),
-              //             textAlign: TextAlign.center,
-              //           ),
-              //         ),
-              //       ),
               SizedBox(height: height * 0.02),
             ],
           ),

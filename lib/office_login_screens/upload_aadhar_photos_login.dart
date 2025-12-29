@@ -161,7 +161,8 @@ class _UploadAadharPhotosLoginState extends State<UploadAadharPhotosLogin> {
         'mobileNo': widget.mobileNo,
         'Name': widget.name,
       });
-      request.fields['AadhaarNumber'] = '615735525318';
+      // request.fields['AadhaarNumber'] = '615735525318';
+      request.fields['AadhaarNumber'] = widget.adharNo;
 
       // Add front and back images
       request.files.add(await http.MultipartFile.fromPath(
