@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/Home_Screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/search_aadhar_no_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,10 +21,11 @@ void main() {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Marvis Auth',
+        // title: 'Marvis Auth',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        // home: const SearchAadharNoLoginScreen(),
         home: const HomeScreen(),
       )));
 }

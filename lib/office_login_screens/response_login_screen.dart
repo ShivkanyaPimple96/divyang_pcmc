@@ -1,5 +1,4 @@
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/Home_Screen.dart';
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/search_aadhar_number_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/search_aadhar_no_login_screen.dart';
 import 'package:flutter/material.dart';
 
 class ResponseLoginScreen extends StatelessWidget {
@@ -85,7 +84,7 @@ class ResponseLoginScreen extends StatelessWidget {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SearchAadharNumberScreen(
+                              builder: (context) => SearchAadharNoLoginScreen(
                                   // aadharNumber: "",
                                   // mobileNumber: mobileNumber,
                                   // fullName: fullName,
