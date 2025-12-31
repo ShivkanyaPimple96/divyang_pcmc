@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
-
 import 'package:path_provider/path_provider.dart';
 
 class VideoRecordKYCScreen extends StatefulWidget {
@@ -22,6 +21,9 @@ class VideoRecordKYCScreen extends StatefulWidget {
   final String addressEnter;
   final String gender;
   final String fullName;
+  final String udidNumber;
+  final String disabilityType;
+  final String disabilityPercentage;
   final String lastSubmit;
   //    final String frontImagePath;
   // final String backImagePath;
@@ -39,6 +41,9 @@ class VideoRecordKYCScreen extends StatefulWidget {
     required this.gender,
     required this.fullName,
     required this.lastSubmit,
+    required this.udidNumber,
+    required this.disabilityType,
+    required this.disabilityPercentage,
   });
 
   @override
@@ -196,6 +201,9 @@ class _VideoRecordKYCScreenState extends State<VideoRecordKYCScreen> {
             gender: widget.gender,
             fullName: widget.fullName,
             isFrontCamera: isFrontCamera,
+            udidNumber: widget.udidNumber,
+            disabilityType: widget.disabilityType,
+            disabilityPercentage: widget.disabilityPercentage,
             lastSubmit: "",
             // frontImagePath: widget.frontImagePath, // Pass front image path
             // backImagePath: widget.backImagePath,

@@ -11,6 +11,7 @@ class ViewButtonPensionerDetailesScreen extends StatefulWidget {
   final String aadhaarNumber;
   final String addresss;
   final String gender;
+
   final String bankName;
 
   const ViewButtonPensionerDetailesScreen({
@@ -90,6 +91,9 @@ class _ViewButtonPensionerDetailesScreenState
           aadharNumber: _aadharController.text,
           addressEnter: _addressController.text,
           gender: _genderController.text,
+          udidNumber: String.fromCharCode(0), // Placeholder
+          disabilityType: String.fromCharCode(0), // Placeholder
+          disabilityPercentage: String.fromCharCode(0), // Placeholder
         ),
       ),
     );

@@ -13,6 +13,9 @@ class AadharVerificationKYCScreen extends StatefulWidget {
   final String addressEnter;
   final String ppoNumber;
   final String gender;
+  final String udidNumber;
+  final String disabilityType;
+  final String disabilityPercentage;
 
   const AadharVerificationKYCScreen({
     super.key,
@@ -22,6 +25,9 @@ class AadharVerificationKYCScreen extends StatefulWidget {
     required this.addressEnter,
     required this.ppoNumber,
     required this.gender,
+    required this.udidNumber,
+    required this.disabilityType,
+    required this.disabilityPercentage,
   });
 
   @override
@@ -234,80 +240,6 @@ class _AadharVerificationKYCScreenState
     );
   }
 
-  // Future<void> showErrorDialog(String message,
-  //     {bool shouldNavigate = false}) async {
-  //   return showDialog<void>(
-  //     context: context,
-  //     barrierDismissible: false,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         shape: RoundedRectangleBorder(
-  //           borderRadius: BorderRadius.circular(20.0),
-  //         ),
-  //         title: const Row(
-  //           children: [
-  //             SizedBox(width: 10),
-  //             Text(
-  //               'Note',
-  //               style: TextStyle(
-  //                 fontSize: 20,
-  //                 fontWeight: FontWeight.bold,
-  //               ),
-  //             ),
-  //           ],
-  //         ),
-  //         content: Column(
-  //           mainAxisSize: MainAxisSize.min,
-  //           children: [
-  //             const Divider(thickness: 2.5),
-  //             Text(
-  //               message,
-  //               style: const TextStyle(fontSize: 16),
-  //               textAlign: TextAlign.center,
-  //             ),
-  //             const Divider(thickness: 2.5),
-  //           ],
-  //         ),
-  //         actions: <Widget>[
-  //           ElevatedButton(
-  //             style: ElevatedButton.styleFrom(
-  //               backgroundColor: Colors.green,
-  //               shape: RoundedRectangleBorder(
-  //                 borderRadius: BorderRadius.circular(12.0),
-  //               ),
-  //             ),
-  //             onPressed: () {
-  //               Navigator.of(context).pop(); // Close the dialog
-
-  //               if (shouldNavigate) {
-  //                 // Go back until the 3rd screen from the top (current screen is 0, previous is 1, etc.)
-  //                 int count = 0;
-  //                 Navigator.of(context).popUntil((_) => count++ >= 1);
-  //               }
-
-  //               Navigator.push(
-  //                 context,
-  //                 MaterialPageRoute(
-  //                   builder: (context) => UploadAadharPhotos(
-  //                     aadhaarNumber: widget.aadharNumber,
-  //                     ppoNumber: widget.ppoNumber,
-  //                     mobileNumber: widget.mobileNumber,
-  //                     addressEnter: widget.addressEnter,
-  //                     gender: widget.gender,
-  //                     fullName: widget.fullName,
-  //                     lastSubmit: "",
-  //                   ),
-  //                 ),
-  //               );
-  //             },
-  //             child: const Text('Ok', style: TextStyle(color: Colors.white)),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
-
   Future<void> showErrorDialog(String message,
       {bool shouldNavigate = false,
       bool shouldNavigateToUploadAadhar = false}) async {
@@ -365,6 +297,9 @@ class _AadharVerificationKYCScreenState
                         addressEnter: widget.addressEnter,
                         gender: widget.gender,
                         fullName: widget.fullName,
+                        udidNumber: widget.udidNumber,
+                        disabilityType: widget.disabilityType,
+                        disabilityPercentage: widget.disabilityPercentage,
                         lastSubmit: "",
                       ),
                     ),
@@ -383,6 +318,9 @@ class _AadharVerificationKYCScreenState
                         addressEnter: widget.addressEnter,
                         gender: widget.gender,
                         fullName: widget.fullName,
+                        udidNumber: widget.udidNumber,
+                        disabilityType: widget.disabilityType,
+                        disabilityPercentage: widget.disabilityPercentage,
                         lastSubmit: "",
                       ),
                     ),
@@ -739,6 +677,10 @@ class _AadharVerificationKYCScreenState
                             addressEnter: widget.addressEnter,
                             gender: widget.gender,
                             fullName: widget.fullName,
+                            udidNumber: widget.udidNumber,
+                            disabilityType: widget.disabilityType,
+                            disabilityPercentage: widget.disabilityPercentage,
+
                             // frontImagePath: _frontImage?.path ??
                             // Provide empty string as default
                             // backImagePath: _backImage?.path ?? '',

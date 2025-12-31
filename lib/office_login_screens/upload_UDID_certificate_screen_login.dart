@@ -182,6 +182,7 @@ class _UploadUdidCertificateScreenLoginState
       request.fields['AadhaarNumber'] = widget.adharNo;
       request.fields['DisabilityType'] = widget.disabilityType;
       request.fields['DisabilityPercentage'] = widget.disabilityPercentage;
+      request.fields['uniqueKey'] = widget.uididNumber;
       request.fields['name'] = widget.name;
       request.fields['mobileNo'] = widget.mobileNo;
       request.fields['uniqueKey'] = widget.uniqueKey;

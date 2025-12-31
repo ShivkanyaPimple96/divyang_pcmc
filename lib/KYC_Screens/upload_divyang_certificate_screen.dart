@@ -25,6 +25,9 @@ class UploadDivyangCertificateScreen extends StatefulWidget {
   final String addressEnter;
   final String gender;
   final String fullName;
+  final String udidNumber;
+  final String disabilityType;
+  final String disabilityPercentage;
 
   const UploadDivyangCertificateScreen({
     super.key,
@@ -39,6 +42,9 @@ class UploadDivyangCertificateScreen extends StatefulWidget {
     required this.addressEnter,
     required this.gender,
     required this.fullName,
+    required this.udidNumber,
+    required this.disabilityType,
+    required this.disabilityPercentage,
     // required this.latitude,
     // required this.longitude,
     // required this.address,
@@ -185,6 +191,9 @@ class _UploadDivyangCertificateScreenState
 
       // Adding fields to the request
       request.fields['AadhaarNumber'] = widget.aadhaarNumber;
+      request.fields['DisabilityType'] = widget.disabilityType;
+      request.fields['DisabilityPercentage'] = widget.disabilityPercentage;
+      request.fields['uniqueKey'] = widget.udidNumber;
       // request.fields['Latitude'] = widget.latitude;
       // request.fields['Longitude'] = widget.longitude;
       // request.fields['LiveAddress'] = widget.address;

@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/vedio_record_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 
 class PhotoClickKYCScreen extends StatefulWidget {
   final String aadhaarNumber;
@@ -15,6 +15,9 @@ class PhotoClickKYCScreen extends StatefulWidget {
   final String addressEnter;
   final String gender;
   final String fullName;
+  final String udidNumber;
+  final String disabilityType;
+  final String disabilityPercentage;
   // final String frontImagePath;
   // final String backImagePath;
   final String lastSubmit;
@@ -30,6 +33,9 @@ class PhotoClickKYCScreen extends StatefulWidget {
     // required this.frontImagePath,
     // required this.backImagePath,
     required this.lastSubmit,
+    required this.udidNumber,
+    required this.disabilityType,
+    required this.disabilityPercentage,
   });
 
   @override
@@ -365,6 +371,10 @@ class _PhotoClickKYCScreenState extends State<PhotoClickKYCScreen> {
             addressEnter: widget.addressEnter,
             gender: widget.gender,
             fullName: widget.fullName,
+            udidNumber: widget.udidNumber,
+            disabilityType: widget.disabilityType,
+            disabilityPercentage: widget.disabilityPercentage,
+            //  imagePath: _image!.path,
             lastSubmit: "",
             // frontImagePath: widget.frontImagePath,
             // backImagePath: widget.backImagePath,

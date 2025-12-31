@@ -5,7 +5,6 @@ import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/uploa
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
-
 import 'package:path/path.dart';
 import 'package:video_compress/video_compress.dart';
 import 'package:video_player/video_player.dart';
@@ -21,6 +20,9 @@ class VideoPlayerKYCScreen extends StatefulWidget {
   final String addressEnter;
   final String gender;
   final String fullName;
+  final String udidNumber;
+  final String disabilityType;
+  final String disabilityPercentage;
   final String lastSubmit;
 
   const VideoPlayerKYCScreen({
@@ -36,6 +38,9 @@ class VideoPlayerKYCScreen extends StatefulWidget {
     required this.gender,
     required this.fullName,
     required this.lastSubmit,
+    required this.udidNumber,
+    required this.disabilityType,
+    required this.disabilityPercentage,
   });
 
   @override
@@ -198,6 +203,9 @@ class _VideoPlayerKYCScreenState extends State<VideoPlayerKYCScreen> {
               // ppoNumber: widget.ppoNumber,
               // videoPath: widget.videoPath,
               aadhaarNumber: widget.aadhaarNumber,
+              udidNumber: widget.udidNumber,
+              disabilityType: widget.disabilityType,
+              disabilityPercentage: widget.disabilityPercentage,
               lastSubmit: "",
             ),
           ),
