@@ -389,7 +389,7 @@ Your life certificate is currently under verification. You will receive your cer
                         ),
                         SizedBox(height: height * 0.02),
                         Text(
-                          'Submitting...\nसबमिट करत आहे...',
+                          'Please wait...\nसबमिट करत आहे...',
                           style: TextStyle(
                             fontSize: width * 0.04,
                             fontWeight: FontWeight.w500,

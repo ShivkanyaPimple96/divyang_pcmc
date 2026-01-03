@@ -560,7 +560,7 @@ class _DivyangDetailesOfficeloginScreenState
                               ),
                               items: _disabilityTypes.map((disability) {
                                 return DropdownMenuItem<String>(
-                                  value: disability['value'],
+                                  value: disability['label'],
                                   child: Text(
                                     disability['label']!,
                                     overflow: TextOverflow.ellipsis,

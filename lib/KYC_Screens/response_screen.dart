@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class ResponseScreen extends StatelessWidget {
   // final String ppoNumber;
+  final String aadhaarNumber;
   final String mobileNumber;
   final String addressEnter;
   final String gender;
@@ -10,6 +11,9 @@ class ResponseScreen extends StatelessWidget {
   final String message;
   final bool success;
   final String verificationStatus;
+  final String udidNumber;
+  final String disabilityType;
+  final String disabilityPercentage;
 
   const ResponseScreen(
       {super.key,
@@ -20,17 +24,26 @@ class ResponseScreen extends StatelessWidget {
       required this.addressEnter,
       required this.gender,
       required this.fullName,
-      required this.verificationStatus});
+      required this.verificationStatus,
+      required this.aadhaarNumber,
+      required this.udidNumber,
+      required this.disabilityType,
+      required this.disabilityPercentage});
 
   @override
   Widget build(BuildContext context) {
+    // Get screen dimensions
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+    final height = size.height;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white, // Dim background like a dialog effect
         body: Center(
           child: Container(
-            width: MediaQuery.of(context).size.width * 0.85, // Dialog width
-            padding: const EdgeInsets.all(16.0),
+            width: width * 0.85, // Dialog width (85% of screen)
+            padding: EdgeInsets.all(width * 0.04),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20.0), // Rounded corners
@@ -53,60 +66,70 @@ class ResponseScreen extends StatelessWidget {
                           ? Icons.check_circle_outline
                           : Icons.error_outline,
                       color: success ? Colors.green : Colors.red,
-                      size: 28,
+                      size: width * 0.07, // Responsive icon size
                     ),
-                    const SizedBox(width: 10),
+                    SizedBox(width: width * 0.025),
                     Text(
                       success ? 'Success' : 'Error',
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: width * 0.05,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: height * 0.012),
                 const Divider(thickness: 2.5),
-                const SizedBox(height: 10),
+                SizedBox(height: height * 0.012),
                 Text(
                   message,
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(fontSize: width * 0.04),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: height * 0.012),
                 const Divider(thickness: 2.5),
-                const SizedBox(height: 10),
+                SizedBox(height: height * 0.012),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    const SizedBox(width: 10),
+                    SizedBox(width: width * 0.025),
                     ElevatedButton(
                       onPressed: () {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => DivyangDetailesScreen(
-                                    aadharNumber: "",
-                                    mobileNumber: mobileNumber,
-                                    fullName: fullName,
-                                    url: "",
-                                    aadhaarNumber: "",
-                                    gender: "",
-                                    addresss: addressEnter,
-                                    verificationStatus: verificationStatus,
-                                  )),
+                            builder: (context) => DivyangDetailesScreen(
+                              aadharNumber: aadhaarNumber,
+                              mobileNumber: mobileNumber,
+                              fullName: fullName,
+                              url: "",
+                              aadhaarNumber: '',
+                              gender: gender,
+                              addresss: addressEnter,
+                              verificationStatus: verificationStatus,
+                            ),
+                          ),
                           (Route<dynamic> route) => false,
                         );
-
-                        // Navigator.pushReplacement(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => SplashScreen()),
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: success ? Colors.green : Colors.red,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12.0),
                         ),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.08,
+                          vertical: height * 0.015,
+                        ),
                       ),
-                      child: Text("OK"),
+                      child: Text(
+                        "OK",
+                        style: TextStyle(
+                          fontSize: width * 0.04,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ],
                 ),

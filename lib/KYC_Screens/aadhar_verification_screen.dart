@@ -98,18 +98,14 @@ class _AadharVerificationKYCScreenState
       } else {
         final responseBody = await response.transform(utf8.decoder).join();
         final Map<String, dynamic> errorData = json.decode(responseBody);
-        // await showErrorDialog(
-        //     'Failed to verify aadhar number. Please check your aadhar number is correct.\nआधार क्रमांकाची पडताळणी करण्यात अयशस्वी तुमचा आधार क्रमांक तपासा',
-        //     shouldNavigate: true);
         await showErrorDialog(
             'Failed to verify aadhar number. Please check your aadhar number is correct.\nआधार क्रमांकाची पडताळणी करण्यात अयशस्वी तुमचा आधार क्रमांक तपासा',
             shouldNavigate: true);
       }
     } catch (error) {
       print('Exception in verifyAadhar: $error');
-      await showErrorDialog
-          // ('An error occurred: $error');
-          ('Note: Please check your internet connection\nकृपया तुमचे इंटरनेट कनेक्शन तपासा.');
+      await showErrorDialog(
+          'Note: Please check your internet connection\nकृपया तुमचे इंटरनेट कनेक्शन तपासा.');
     } finally {
       if (mounted) {
         setState(() {
@@ -172,14 +168,11 @@ class _AadharVerificationKYCScreenState
         final Map<String, dynamic> errorData = json.decode(responseBody);
         await showErrorDialog('Please Enter Correct OTP\n कृपया योग्य OTP टाका',
             shouldNavigateToUploadAadhar: true);
-        // await showErrorDialog(
-        //     'Failed to submit OTP. ${errorData['message'] ?? ''}\nOTP सबमिट करण्यात अयशस्वी');
       }
     } catch (error) {
       print('Exception in submitOtp: $error');
-      await showErrorDialog
-          // ('An error occurred: $error');
-          ('Note: Please check your internet connection\nकृपया तुमचे इंटरनेट कनेक्शन तपासा.');
+      await showErrorDialog(
+          'Note: Please check your internet connection\nकृपया तुमचे इंटरनेट कनेक्शन तपासा.');
     } finally {
       if (mounted) {
         setState(() {
@@ -190,22 +183,25 @@ class _AadharVerificationKYCScreenState
   }
 
   Future<void> showSuccessDialog(String message) async {
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(width * 0.05),
           ),
-          title: const Row(
+          title: Row(
             children: [
-              Icon(Icons.check_circle, color: Colors.green),
-              SizedBox(width: 10),
+              Icon(Icons.check_circle, color: Colors.green, size: width * 0.06),
+              SizedBox(width: width * 0.025),
               Text(
                 'Success',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: width * 0.05,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -217,7 +213,7 @@ class _AadharVerificationKYCScreenState
               const Divider(thickness: 2.5),
               Text(
                 message,
-                style: const TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: width * 0.04),
                 textAlign: TextAlign.center,
               ),
               const Divider(thickness: 2.5),
@@ -228,11 +224,11 @@ class _AadharVerificationKYCScreenState
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.0),
+                  borderRadius: BorderRadius.circular(width * 0.03),
                 ),
               ),
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Ok'),
+              child: Text('Ok', style: TextStyle(fontSize: width * 0.04)),
             ),
           ],
         );
@@ -243,21 +239,24 @@ class _AadharVerificationKYCScreenState
   Future<void> showErrorDialog(String message,
       {bool shouldNavigate = false,
       bool shouldNavigateToUploadAadhar = false}) async {
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(width * 0.05),
           ),
-          title: const Row(
+          title: Row(
             children: [
-              SizedBox(width: 10),
+              SizedBox(width: width * 0.025),
               Text(
                 'Note',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: width * 0.05,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -269,7 +268,7 @@ class _AadharVerificationKYCScreenState
               const Divider(thickness: 2.5),
               Text(
                 message,
-                style: const TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: width * 0.04),
                 textAlign: TextAlign.center,
               ),
               const Divider(thickness: 2.5),
@@ -280,11 +279,11 @@ class _AadharVerificationKYCScreenState
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.0),
+                  borderRadius: BorderRadius.circular(width * 0.03),
                 ),
               ),
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).pop();
 
                 if (shouldNavigate) {
                   Navigator.push(
@@ -304,10 +303,7 @@ class _AadharVerificationKYCScreenState
                       ),
                     ),
                   );
-                  // Go back one screen
-                  // Navigator.of(context).pop();
                 } else if (shouldNavigateToUploadAadhar) {
-                  // Navigate to UploadAadharPhotos screen
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -327,7 +323,9 @@ class _AadharVerificationKYCScreenState
                   );
                 }
               },
-              child: const Text('Ok', style: TextStyle(color: Colors.white)),
+              child: Text('Ok',
+                  style:
+                      TextStyle(color: Colors.white, fontSize: width * 0.04)),
             ),
           ],
         );
@@ -337,31 +335,35 @@ class _AadharVerificationKYCScreenState
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+    final height = size.height;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: const Text(
+          title: Text(
             'Aadhar Verification [Step-3]',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 18,
+              fontSize: width * 0.045,
               fontWeight: FontWeight.bold,
             ),
           ),
           backgroundColor: const Color(0xFFF76048),
         ),
         body: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(width * 0.04),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 10),
+              SizedBox(height: height * 0.012),
               Container(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(width * 0.04),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(width * 0.025),
                   border: Border.all(color: const Color(0xFFF76048), width: 2),
                   boxShadow: const [
                     BoxShadow(
@@ -374,14 +376,14 @@ class _AadharVerificationKYCScreenState
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.perm_identity,
-                        color: Colors.blue, size: 24),
-                    const SizedBox(width: 10),
+                    Icon(Icons.perm_identity,
+                        color: Colors.blue, size: width * 0.06),
+                    SizedBox(width: width * 0.025),
                     Expanded(
                       child: Text(
                         'Aadhar Number: ${widget.aadharNumber}',
-                        style: const TextStyle(
-                          fontSize: 18,
+                        style: TextStyle(
+                          fontSize: width * 0.045,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -390,70 +392,89 @@ class _AadharVerificationKYCScreenState
                   ],
                 ),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: height * 0.012),
               Center(
                   child: Text(
                 'Full Name: ${widget.fullName}',
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.black,
-                  fontSize: 20,
+                  fontSize: width * 0.05,
                   fontWeight: FontWeight.bold,
                 ),
               )),
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.024),
               Center(
                 child: !isVerificationSuccessful
-                    ? ElevatedButton(
-                        onPressed:
-                            isVerifyingAadharLoading ? null : verifyAadhar,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFFF76048),
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 10),
-                        ),
-                        child: isVerifyingAadharLoading
-                            ? const CircularProgressIndicator(
-                                color: Colors.white)
-                            : Text(
-                                "Verify Your Aadhar Number\nआधार क्रमांकाची पडताळणी करा",
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
+                    ? Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ElevatedButton(
+                            onPressed:
+                                isVerifyingAadharLoading ? null : verifyAadhar,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFFF76048),
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(width * 0.075),
                               ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: width * 0.045,
+                                  vertical: height * 0.021),
+                            ),
+                            child: isVerifyingAadharLoading
+                                ? Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        "Please wait..\nकृपया प्रतीक्षा करा..",
+                                        style: TextStyle(
+                                          fontSize: width * 0.045,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.blue,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      SizedBox(height: height * 0.021),
+                                      SizedBox(
+                                        height: height * 0.012,
+                                        width: width * 0.025,
+                                        child: CircularProgressIndicator(
+                                          color: Colors.blue,
+                                          strokeWidth: 3,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : Text(
+                                    "Verify Your Aadhar Number\nआधार क्रमांकाची पडताळणी करा",
+                                    style: TextStyle(
+                                      fontSize: width * 0.045,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                          ),
+                          SizedBox(height: height * 0.012),
+                        ],
                       )
-                    : null, // This will hide the button when verification is successful
+                    : null,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.024),
               if (isOtpFieldVisible) ...[
-                // Center(
-                //   child: Text(
-                //     'आधार ला लिंक केलेल्या मोबाईल नंबर वर \nOTP पाठवला आहे.\nOTP has been sent to the mobile\n number linked with Aadhar',
-                //     style: TextStyle(
-                //       fontSize: 18,
-                //       color: Colors.red,
-                //     ),
-                //     textAlign: TextAlign.center,
-                //   ),
-                // ),
-                // const SizedBox(height: 20),
-                const Text(
+                Text(
                   'Enter Aadhar OTP:',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: width * 0.045,
                     color: Colors.black54,
                   ),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: height * 0.012),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(width * 0.025),
                     border:
                         Border.all(color: const Color(0xFFF76048), width: 2),
                     boxShadow: const [
@@ -466,22 +487,23 @@ class _AadharVerificationKYCScreenState
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.03),
                     child: TextField(
                       controller: otpController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'OTP टाका',
-                        hintStyle: TextStyle(color: Colors.grey[600]),
+                        hintStyle: TextStyle(
+                            color: Colors.grey[600], fontSize: width * 0.04),
                         counterText: '',
                       ),
+                      style: TextStyle(fontSize: width * 0.045),
                       keyboardType: TextInputType.number,
                       maxLength: 6,
                     ),
                   ),
                 ),
-
-                const SizedBox(height: 20),
+                SizedBox(height: height * 0.024),
                 if (isSubmitOtpButtonVisible)
                   Center(
                     child: ElevatedButton(
@@ -490,17 +512,39 @@ class _AadharVerificationKYCScreenState
                         backgroundColor: Color(0xFFF76048),
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(width * 0.075),
                         ),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 10),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: width * 0.1, vertical: height * 0.012),
                       ),
                       child: isSubmittingOtpLoading
-                          ? const CircularProgressIndicator(color: Colors.white)
+                          ? Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  "Please wait..\nकृपया प्रतीक्षा करा..",
+                                  style: TextStyle(
+                                    fontSize: width * 0.045,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                SizedBox(height: height * 0.024),
+                                SizedBox(
+                                  height: height * 0.021,
+                                  width: width * 0.045,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.blue,
+                                    strokeWidth: 3,
+                                  ),
+                                ),
+                              ],
+                            )
                           : Text(
                               "Submit OTP\nOTP सबमिट करा",
-                              style: const TextStyle(
-                                fontSize: 18,
+                              style: TextStyle(
+                                fontSize: width * 0.045,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
@@ -508,12 +552,12 @@ class _AadharVerificationKYCScreenState
                             ),
                     ),
                   ),
-                const SizedBox(height: 50),
+                SizedBox(height: height * 0.06),
                 Center(
                   child: Text(
                     'आधार ला लिंक केलेल्या मोबाईल नंबर वर \nOTP पाठवला आहे.\nOTP has been sent to the mobile\n number linked with Aadhar',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: width * 0.045,
                       color: Colors.green,
                     ),
                     textAlign: TextAlign.center,
@@ -521,11 +565,11 @@ class _AadharVerificationKYCScreenState
                 ),
               ],
               if (isResponseDataVisible) ...[
-                const SizedBox(height: 20),
-                const Text(
+                SizedBox(height: height * 0.024),
+                Text(
                   'Aadhar Details:',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: width * 0.05,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -533,24 +577,25 @@ class _AadharVerificationKYCScreenState
                 const Divider(),
                 if (profilePhotoUrl.isNotEmpty)
                   Container(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: EdgeInsets.all(width * 0.04),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(width * 0.025),
                       border: Border.all(color: Color(0xFFF76048), width: 2),
                     ),
                     child: Column(
                       children: [
-                        const SizedBox(height: 20),
+                        SizedBox(height: height * 0.024),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              height: 120.0,
-                              width: 120.0,
+                              height: width * 0.3,
+                              width: width * 0.3,
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius:
+                                    BorderRadius.circular(width * 0.025),
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.grey.withOpacity(0.3),
@@ -561,13 +606,15 @@ class _AadharVerificationKYCScreenState
                                 ],
                               ),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius:
+                                    BorderRadius.circular(width * 0.025),
                                 child: Image.network(
                                   profilePhotoUrl,
                                   errorBuilder: (context, error, stackTrace) {
-                                    return const Center(
+                                    return Center(
                                       child: Icon(Icons.error,
-                                          size: 50, color: Colors.red),
+                                          size: width * 0.125,
+                                          color: Colors.red),
                                     );
                                   },
                                   loadingBuilder:
@@ -590,7 +637,7 @@ class _AadharVerificationKYCScreenState
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 20),
+                            SizedBox(width: width * 0.05),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -598,15 +645,15 @@ class _AadharVerificationKYCScreenState
                                   Text(
                                     'Name:',
                                     style: TextStyle(
-                                      fontSize: 16.0,
+                                      fontSize: width * 0.04,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.grey[700],
                                     ),
                                   ),
                                   Text(
                                     aadhaarName,
-                                    style: const TextStyle(
-                                      fontSize: 18.0,
+                                    style: TextStyle(
+                                      fontSize: width * 0.045,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black87,
                                     ),
@@ -615,19 +662,19 @@ class _AadharVerificationKYCScreenState
                                     color: Colors.grey,
                                     thickness: 2,
                                   ),
-                                  const SizedBox(height: 12.0),
+                                  SizedBox(height: height * 0.014),
                                   Text(
                                     'Gender:',
                                     style: TextStyle(
-                                      fontSize: 16.0,
+                                      fontSize: width * 0.04,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.grey[700],
                                     ),
                                   ),
                                   Text(
                                     gender,
-                                    style: const TextStyle(
-                                      fontSize: 16.0,
+                                    style: TextStyle(
+                                      fontSize: width * 0.04,
                                       color: Colors.black87,
                                     ),
                                   ),
@@ -635,19 +682,19 @@ class _AadharVerificationKYCScreenState
                                     color: Colors.grey,
                                     thickness: 2,
                                   ),
-                                  const SizedBox(height: 12.0),
+                                  SizedBox(height: height * 0.014),
                                   Text(
                                     'Aadhar Address:',
                                     style: TextStyle(
-                                      fontSize: 16.0,
+                                      fontSize: width * 0.04,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.grey[700],
                                     ),
                                   ),
                                   Text(
                                     aadhaarAddress,
-                                    style: const TextStyle(
-                                      fontSize: 16.0,
+                                    style: TextStyle(
+                                      fontSize: width * 0.04,
                                       color: Colors.black87,
                                     ),
                                   ),
@@ -656,14 +703,14 @@ class _AadharVerificationKYCScreenState
                             ),
                           ],
                         ),
-                        const SizedBox(height: 10),
+                        SizedBox(height: height * 0.012),
                       ],
                     ),
                   ),
-                SizedBox(height: 20),
+                SizedBox(height: height * 0.024),
               ],
               if (isNextButtonVisible) ...[
-                const SizedBox(height: 20),
+                SizedBox(height: height * 0.024),
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
@@ -680,10 +727,6 @@ class _AadharVerificationKYCScreenState
                             udidNumber: widget.udidNumber,
                             disabilityType: widget.disabilityType,
                             disabilityPercentage: widget.disabilityPercentage,
-
-                            // frontImagePath: _frontImage?.path ??
-                            // Provide empty string as default
-                            // backImagePath: _backImage?.path ?? '',
                             lastSubmit: "",
                           ),
                         ),
@@ -693,15 +736,15 @@ class _AadharVerificationKYCScreenState
                       backgroundColor: Color(0xFFF76048),
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(width * 0.075),
                       ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 10),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.1, vertical: height * 0.012),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Next',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: width * 0.045,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -710,7 +753,7 @@ class _AadharVerificationKYCScreenState
                   ),
                 ),
               ],
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.024),
             ],
           ),
         ),
@@ -718,397 +761,3 @@ class _AadharVerificationKYCScreenState
     );
   }
 }
-
-
-// import 'dart:async';
-// import 'dart:convert';
-// import 'dart:io';
-
-// import 'package:flutter/material.dart';
-// import 'package:http/http.dart' as http;
-// import 'package:http/io_client.dart';
-// import 'package:nagpur_mahanagarpalika/KYC_Screens/capture_photo_screen.dart';
-
-// class AadharVerificationKYCScreen extends StatefulWidget {
-//   final String fullName;
-//   final String aadharNumber;
-//   final String mobileNumber;
-//   final String addressEnter;
-
-//   // final String verificationStatusNote;
-
-//   final String ppoNumber;
-//   final String gender;
-
-//   const AadharVerificationKYCScreen({
-//     super.key,
-//     required this.fullName,
-//     required this.aadharNumber,
-//     required this.mobileNumber,
-//     required this.addressEnter,
-
-//     // required this.verificationStatusNote,
-//     // required this.inputFieldOneValue,
-
-//     required this.ppoNumber,
-//     required this.gender,
-//   });
-
-//   @override
-//   _AadharVerificationKYCScreenState createState() =>
-//       _AadharVerificationKYCScreenState();
-// }
-
-// class _AadharVerificationKYCScreenState
-//     extends State<AadharVerificationKYCScreen> {
-//   String fetchedFullName = '';
-//   String verificationStatus = '';
-//   String clientId = '';
-//   String otpStatus = '';
-//   String profilePhotoUrl = '';
-//   String aadhaarName = '';
-//   String aadhaarAddress = '';
-//   String gender = '';
-//   String tblDivyangFullName = '';
-//   String tblDivyangAddress = '';
-
-//   final TextEditingController otpController = TextEditingController();
-//   bool isOtpFieldVisible = false;
-//   bool isSubmitOtpButtonVisible = true;
-//   bool isNextButtonVisible = false;
-
-//   // Loading state variables
-//   bool isVerifyingAadharLoading = false;
-//   bool isSubmittingOtpLoading = false;
-
-//   Future<void> verifyAadhar() async {
-//     try {
-//       setState(() {
-//         isVerifyingAadharLoading = true;
-//       });
-
-//       // Create a custom HttpClient with bad certificate callback
-//       final HttpClient client = HttpClient()
-//         ..badCertificateCallback =
-//             (X509Certificate cert, String host, int port) => true;
-
-//       final String apiUrl =
-//           'https://nagpurpensioner.altwise.in/api/aadhar/GetAadharOtp?AadhaarNumber=${widget.aadharNumber}';
-
-//       // Create the request using the custom client
-//       final request = await client.getUrl(Uri.parse(apiUrl));
-//       final response = await request.close();
-
-//       if (response.statusCode == 200) {
-//         final responseBody = await response.transform(utf8.decoder).join();
-//         final Map<String, dynamic> responseData = json.decode(responseBody);
-
-//         // Print the entire response for debugging
-//         print('API Response: $responseData');
-
-//         // Access the nested data object
-//         final data = responseData['data'] ?? {};
-
-//         setState(() {
-//           fetchedFullName = data['full_name'] ?? '';
-//           verificationStatus = data['VerificationStatus'] ?? '';
-//           clientId = data['client_id'] ?? '';
-//           otpStatus = data['otp_sent'] == true ? 'OTP Sent' : 'OTP Not Sent';
-//           isOtpFieldVisible = data['otp_sent'] == true;
-//         });
-
-//         // Print the success message
-//         print('Message: ${responseData['message']}');
-//       } else {
-//         final responseBody = await response.transform(utf8.decoder).join();
-//         final Map<String, dynamic> errorData = json.decode(responseBody);
-//         await showErrorDialog(
-//             'Failed to verify Aadhar number. ${errorData['message'] ?? ''}\nआधार क्रमांकाची पडताळणी करण्यात अयशस्वी');
-//       }
-//     } catch (error) {
-//       print('Exception in verifyAadhar: $error');
-//       await showErrorDialog('An error occurred: $error');
-//     } finally {
-//       if (mounted) {
-//         setState(() {
-//           isVerifyingAadharLoading = false;
-//         });
-//       }
-//     }
-//   }
-
-//   Future<http.Client> getHttpClient() async {
-//     final HttpClient client = HttpClient();
-//     client.badCertificateCallback =
-//         (X509Certificate cert, String host, int port) => true;
-//     return IOClient(client);
-//   }
-
-//   Future<void> showErrorDialog(String message) async {
-//     return showDialog<void>(
-//       context: context,
-//       barrierDismissible: false,
-//       builder: (BuildContext context) {
-//         return AlertDialog(
-//           shape: RoundedRectangleBorder(
-//             borderRadius: BorderRadius.circular(20.0),
-//           ),
-//           title: const Row(
-//             children: [
-//               SizedBox(width: 10),
-//               Text(
-//                 'Note',
-//                 style: TextStyle(
-//                   fontSize: 20,
-//                   fontWeight: FontWeight.bold,
-//                 ),
-//               ),
-//             ],
-//           ),
-//           content: Column(
-//             mainAxisSize: MainAxisSize.min,
-//             children: [
-//               const Divider(thickness: 2.5),
-//               Text(
-//                 message,
-//                 style: const TextStyle(fontSize: 16),
-//                 textAlign: TextAlign.center,
-//               ),
-//               const Divider(thickness: 2.5),
-//             ],
-//           ),
-//           actions: <Widget>[
-//             ElevatedButton(
-//               style: ElevatedButton.styleFrom(
-//                 backgroundColor: Colors.green,
-//                 shape: RoundedRectangleBorder(
-//                   borderRadius: BorderRadius.circular(12.0),
-//                 ),
-//               ),
-//               onPressed: () => Navigator.of(context).pop(),
-//               child: const Text('Ok'),
-//             ),
-//           ],
-//         );
-//       },
-//     );
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         backgroundColor: Colors.white,
-//         appBar: AppBar(
-//           title: const Text(
-//             'Aadhar Verification [Step-3]',
-//             style: TextStyle(
-//               color: Colors.white,
-//               fontSize: 18,
-//               fontWeight: FontWeight.bold,
-//             ),
-//           ),
-//           backgroundColor: const Color.fromARGB(255, 27, 107, 212),
-//         ),
-//         body: SingleChildScrollView(
-//           padding: const EdgeInsets.all(16.0),
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               const SizedBox(height: 10),
-//               Container(
-//                 padding: const EdgeInsets.all(16.0),
-//                 decoration: BoxDecoration(
-//                   color: Colors.white,
-//                   borderRadius: BorderRadius.circular(10),
-//                   border: Border.all(color: const Color(0xFF92B7F7), width: 2),
-//                   boxShadow: const [
-//                     BoxShadow(
-//                       color: Color(0x9B9B9BC1),
-//                       blurRadius: 10,
-//                       spreadRadius: 0,
-//                       offset: Offset(0, 2),
-//                     )
-//                   ],
-//                 ),
-//                 child: Row(
-//                   children: [
-//                     const Icon(Icons.perm_identity,
-//                         color: Colors.blue, size: 24),
-//                     const SizedBox(width: 10),
-//                     Expanded(
-//                       child: Text(
-//                         'Aadhar Number: ${widget.aadharNumber}',
-//                         style: const TextStyle(
-//                           fontSize: 18,
-//                           fontWeight: FontWeight.bold,
-//                           color: Colors.black,
-//                         ),
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//               const SizedBox(height: 10),
-//               Center(
-//                   child: Text(
-//                 'Full Name: ${widget.fullName}',
-//                 style: const TextStyle(
-//                   color: Colors.black,
-//                   fontSize: 20,
-//                   fontWeight: FontWeight.bold,
-//                 ),
-//               )),
-//               const SizedBox(height: 20),
-//               Center(
-//                 child: ElevatedButton(
-//                   onPressed: isVerifyingAadharLoading ? null : verifyAadhar,
-//                   style: ElevatedButton.styleFrom(
-//                     backgroundColor: Color.fromARGB(255, 27, 107, 212),
-//                     foregroundColor: Colors.black,
-//                     shape: RoundedRectangleBorder(
-//                       borderRadius: BorderRadius.circular(30),
-//                     ),
-//                     padding: const EdgeInsets.symmetric(
-//                         horizontal: 40, vertical: 10),
-//                   ),
-//                   child: isVerifyingAadharLoading
-//                       ? const CircularProgressIndicator(color: Colors.blue)
-//                       : Text(
-//                           "Verify Your Aadhar Number\nआधार क्रमांकाची पडताळणी करा",
-//                           style: const TextStyle(
-//                             fontSize: 18,
-//                             fontWeight: FontWeight.bold,
-//                             color: Colors.white,
-//                           ),
-//                         ),
-//                 ),
-//               ),
-//               const SizedBox(height: 20),
-//               if (isOtpFieldVisible) ...[
-//                 const Text(
-//                   'Enter Aadhar OTP:',
-//                   style: TextStyle(
-//                     fontSize: 18,
-//                     color: Colors.black54,
-//                   ),
-//                 ),
-//                 const SizedBox(height: 10),
-//                 Container(
-//                   decoration: BoxDecoration(
-//                     color: Colors.white,
-//                     borderRadius: BorderRadius.circular(10),
-//                     border:
-//                         Border.all(color: const Color(0xFF92B7F7), width: 2),
-//                     boxShadow: const [
-//                       BoxShadow(
-//                         color: Color(0x9B9B9BC1),
-//                         blurRadius: 10,
-//                         spreadRadius: 0,
-//                         offset: Offset(0, 2),
-//                       ),
-//                     ],
-//                   ),
-//                   child: Padding(
-//                     padding: const EdgeInsets.symmetric(horizontal: 12),
-//                     child: TextField(
-//                       controller: otpController,
-//                       decoration: InputDecoration(
-//                         border: InputBorder.none,
-//                         hintText: 'OTP टाका',
-//                         hintStyle: TextStyle(color: Colors.grey[600]),
-//                         counterText: '',
-//                       ),
-//                       keyboardType: TextInputType.number,
-//                     ),
-//                   ),
-//                 ),
-//                 const SizedBox(height: 40),
-//                 if (isSubmitOtpButtonVisible)
-//                   Center(
-//                     child: ElevatedButton(
-//                       // onPressed: isSubmittingOtpLoading ? null : submitOtp,
-//                       onPressed: () {},
-//                       style: ElevatedButton.styleFrom(
-//                         backgroundColor: Color.fromARGB(255, 27, 107, 212),
-//                         foregroundColor: Colors.black,
-//                         shape: RoundedRectangleBorder(
-//                           borderRadius: BorderRadius.circular(30),
-//                         ),
-//                         padding: const EdgeInsets.symmetric(
-//                             horizontal: 40, vertical: 10),
-//                       ),
-//                       child: isSubmittingOtpLoading
-//                           ? const CircularProgressIndicator(color: Colors.blue)
-//                           : Text(
-//                               "Submit OTP\nOTP सबमिट करा",
-//                               style: const TextStyle(
-//                                 fontSize: 18,
-//                                 fontWeight: FontWeight.bold,
-//                                 color: Colors.white,
-//                               ),
-//                               textAlign: TextAlign.center,
-//                             ),
-//                     ),
-//                   ),
-//               ],
-//               if (isNextButtonVisible) ...[
-//                 Container(
-//                   padding: const EdgeInsets.all(16.0),
-//                   decoration: BoxDecoration(
-//                     color: Colors.white,
-//                     borderRadius: BorderRadius.circular(10),
-//                     border:
-//                         Border.all(color: const Color(0xFF92B7F7), width: 2),
-//                   ),
-                
-//                 ),
-//                 const SizedBox(height: 20),
-//                 Center(
-//                   child: ElevatedButton(
-//                     onPressed: () {
-//                       Navigator.push(
-//                         context,
-//                         MaterialPageRoute(
-//                           builder: (context) => PhotoClickKYCScreen(
-//                             aadhaarNumber: widget.aadharNumber,
-//                             ppoNumber: widget.ppoNumber,
-//                             mobileNumber: widget.mobileNumber,
-//                             addressEnter: widget.addressEnter,
-//                             gender: widget.gender,
-//                             fullName: widget.fullName,
-//                           ),
-//                         ),
-//                       );
-//                     },
-//                     style: ElevatedButton.styleFrom(
-//                       backgroundColor: Color.fromARGB(255, 27, 107, 212),
-//                       foregroundColor: Colors.black,
-//                       shape: RoundedRectangleBorder(
-//                         borderRadius: BorderRadius.circular(30),
-//                       ),
-//                       padding: const EdgeInsets.symmetric(
-//                           horizontal: 40, vertical: 10),
-//                     ),
-//                     child: const Text(
-//                       'Next',
-//                       style: TextStyle(
-//                         fontSize: 18,
-//                         fontWeight: FontWeight.bold,
-//                         color: Colors.white,
-//                       ),
-//                       textAlign: TextAlign.center,
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//               const SizedBox(height: 20),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-

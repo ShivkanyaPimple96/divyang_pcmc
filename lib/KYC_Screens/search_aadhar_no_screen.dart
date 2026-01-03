@@ -198,13 +198,17 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+    final height = size.height;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Search Aadhar Number by Name',
           style: TextStyle(
             color: Colors.white,
-            fontSize: 20,
+            fontSize: width * 0.05,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -219,42 +223,47 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
             : null,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(width * 0.04),
         child: Column(
           children: [
-            if (_selectedNameType.isEmpty) _buildNameTypeSelection(),
-            if (_selectedNameType.isNotEmpty) _buildSearchForm(),
-            const SizedBox(height: 20),
+            if (_selectedNameType.isEmpty)
+              _buildNameTypeSelection(width, height),
+            if (_selectedNameType.isNotEmpty) _buildSearchForm(width, height),
+            SizedBox(height: height * 0.025),
             if (_isLoading) const CircularProgressIndicator(),
-            if (_hasSearched && !_isLoading) _buildSearchResults(),
+            if (_hasSearched && !_isLoading) _buildSearchResults(width, height),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildNameTypeSelection() {
+  Widget _buildNameTypeSelection(double width, double height) {
     return Column(
       children: [
-        const SizedBox(height: 10),
-        const Text(
+        SizedBox(height: height * 0.012),
+        Text(
           'Choose how you want to search for Aadhar Number',
-          style: TextStyle(fontSize: 16, color: Colors.black),
+          style: TextStyle(fontSize: width * 0.04, color: Colors.black),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 40),
+        SizedBox(height: height * 0.05),
         _buildSelectionCard(
           title: 'Search by First Name',
           subtitle: 'Enter person\'s first name',
           icon: Icons.person,
           onTap: () => _selectNameType('first'),
+          width: width,
+          height: height,
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: height * 0.025),
         _buildSelectionCard(
           title: 'Search by Last Name',
           subtitle: 'Enter person\'s last name',
           icon: Icons.person_outline,
           onTap: () => _selectNameType('last'),
+          width: width,
+          height: height,
         ),
       ],
     );
@@ -265,49 +274,51 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
     required String subtitle,
     required IconData icon,
     required VoidCallback onTap,
+    required double width,
+    required double height,
   }) {
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
+        borderRadius: BorderRadius.circular(width * 0.04),
         side: const BorderSide(color: Color(0xFFF76048), width: 1.5),
       ),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(16.0),
+        borderRadius: BorderRadius.circular(width * 0.04),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(width * 0.05),
           child: Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(12),
+                padding: EdgeInsets.all(width * 0.03),
                 decoration: BoxDecoration(
                   color: const Color(0xFFF76048).withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(width * 0.03),
                 ),
                 child: Icon(
                   icon,
-                  size: 32,
+                  size: width * 0.08,
                   color: const Color(0xFFF76048),
                 ),
               ),
-              const SizedBox(width: 16),
+              SizedBox(width: width * 0.04),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(
-                        fontSize: 18,
+                      style: TextStyle(
+                        fontSize: width * 0.045,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: height * 0.005),
                     Text(
                       subtitle,
-                      style: const TextStyle(
-                        fontSize: 14,
+                      style: TextStyle(
+                        fontSize: width * 0.035,
                         color: Colors.grey,
                       ),
                     ),
@@ -317,7 +328,7 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
               Icon(
                 Icons.arrow_forward_ios,
                 color: Colors.grey[400],
-                size: 20,
+                size: width * 0.05,
               ),
             ],
           ),
@@ -326,54 +337,57 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
     );
   }
 
-  Widget _buildSearchForm() {
+  Widget _buildSearchForm(double width, double height) {
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
+        borderRadius: BorderRadius.circular(width * 0.04),
         side: const BorderSide(color: Color(0xFFF76048), width: 1.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(width * 0.04),
         child: Column(
           children: [
             Text(
               _selectedNameType == 'first'
                   ? 'Search by First Name'
                   : 'Search by Last Name',
-              style: const TextStyle(
-                fontSize: 18,
+              style: TextStyle(
+                fontSize: width * 0.045,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFF76048),
+                color: const Color(0xFFF76048),
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: height * 0.02),
             TextField(
               controller: _nameController,
               decoration: InputDecoration(
                 labelText: _selectedNameType == 'first'
                     ? 'Enter First Name'
                     : 'Enter Last Name',
+                labelStyle: TextStyle(fontSize: width * 0.04),
                 border: const OutlineInputBorder(),
-                prefixIcon: const Icon(Icons.person_search),
+                prefixIcon: Icon(Icons.person_search, size: width * 0.06),
               ),
+              style: TextStyle(fontSize: width * 0.04),
               textCapitalization: TextCapitalization.words,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: height * 0.02),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: _searchAadhar,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFF76048),
-                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  padding: EdgeInsets.symmetric(vertical: height * 0.018),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(width * 0.03),
                   ),
                 ),
-                child: const Text(
+                child: Text(
                   'Search Aadhar Number',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  style:
+                      TextStyle(fontSize: width * 0.045, color: Colors.white),
                 ),
               ),
             ),
@@ -383,13 +397,13 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
     );
   }
 
-  Widget _buildSearchResults() {
+  Widget _buildSearchResults(double width, double height) {
     if (_searchResults.isEmpty) {
-      return const Expanded(
+      return Expanded(
         child: Center(
           child: Text(
             'No results found',
-            style: TextStyle(fontSize: 18, color: Colors.grey),
+            style: TextStyle(fontSize: width * 0.045, color: Colors.grey),
           ),
         ),
       );
@@ -400,11 +414,11 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
+            padding: EdgeInsets.only(bottom: height * 0.01),
             child: Text(
               'Found ${_searchResults.length} result(s)',
-              style: const TextStyle(
-                fontSize: 16,
+              style: TextStyle(
+                fontSize: width * 0.04,
                 fontWeight: FontWeight.bold,
                 color: Colors.grey,
               ),
@@ -415,7 +429,7 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
               itemCount: _searchResults.length,
               itemBuilder: (context, index) {
                 final person = _searchResults[index];
-                return _buildPersonCard(person, index + 1);
+                return _buildPersonCard(person, index + 1, width, height);
               },
             ),
           ),
@@ -424,39 +438,44 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
     );
   }
 
-  Widget _buildPersonCard(Map<String, dynamic> person, int index) {
+  Widget _buildPersonCard(
+      Map<String, dynamic> person, int index, double width, double height) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: EdgeInsets.only(bottom: height * 0.015),
       elevation: 3,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(width * 0.03),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(width * 0.04),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              padding: EdgeInsets.symmetric(
+                  horizontal: width * 0.02, vertical: height * 0.005),
               decoration: BoxDecoration(
                 color: const Color(0xFFF76048).withOpacity(0.1),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(width * 0.02),
               ),
               child: Text(
                 'Result $index',
-                style: const TextStyle(
-                  fontSize: 12,
+                style: TextStyle(
+                  fontSize: width * 0.03,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFFF76048),
+                  color: const Color(0xFFF76048),
                 ),
               ),
             ),
-            const SizedBox(height: 12),
-            _buildDetailRow('Aadhar Number', person['AadhaarNumber']),
+            SizedBox(height: height * 0.015),
+            _buildDetailRow(
+                'Aadhar Number', person['AadhaarNumber'], width, height),
             _buildDetailRow(
               'Full Name',
               '${person['FirstName'] ?? ''} ${person['MiddleName'] ?? ''} ${person['LastName'] ?? ''}'
                   .trim(),
+              width,
+              height,
             ),
           ],
         ),
@@ -464,26 +483,27 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
     );
   }
 
-  Widget _buildDetailRow(String label, dynamic value) {
+  Widget _buildDetailRow(
+      String label, dynamic value, double width, double height) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
+      padding: EdgeInsets.symmetric(vertical: height * 0.007),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            width: 130,
+            width: width * 0.35,
             child: Text(
               '$label:',
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 15,
+                fontSize: width * 0.0375,
               ),
             ),
           ),
           Expanded(
             child: Text(
               value?.toString() ?? 'Not available',
-              style: const TextStyle(fontSize: 15),
+              style: TextStyle(fontSize: width * 0.0375),
               softWrap: true,
             ),
           ),

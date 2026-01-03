@@ -91,7 +91,7 @@ class _VideoRecordKYCScreenState extends State<VideoRecordKYCScreen> {
   // Initialize available cameras
   Future<void> initCamera() async {
     cameras = await availableCameras();
-    setCamera(CameraLensDirection.back); // Start with back camera
+    setCamera(CameraLensDirection.front); // Start with back camera
   }
 
   // Set camera based on lens direction
@@ -328,6 +328,10 @@ class _VideoRecordKYCScreenState extends State<VideoRecordKYCScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+    final height = size.height;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -354,12 +358,12 @@ class _VideoRecordKYCScreenState extends State<VideoRecordKYCScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const SizedBox(height: 20),
-                          const Center(
+                          SizedBox(height: height * 0.025),
+                          Center(
                             child: Text(
                               'Click Divyang Video',
                               style: TextStyle(
-                                fontSize: 24,
+                                fontSize: width * 0.06,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black87,
                                 letterSpacing: 1.5,
@@ -367,11 +371,11 @@ class _VideoRecordKYCScreenState extends State<VideoRecordKYCScreen> {
                               textAlign: TextAlign.center,
                             ),
                           ),
-                          const Center(
+                          Center(
                             child: Text(
                               'दिव्यांग व्यक्तीचा व्हिडिओ काढा',
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: width * 0.045,
                                 color: Colors.black54,
                               ),
                               textAlign: TextAlign.center,
@@ -379,23 +383,23 @@ class _VideoRecordKYCScreenState extends State<VideoRecordKYCScreen> {
                           ),
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsets.only(
-                                left: 20,
-                                right: 20,
-                                top: 30,
+                              padding: EdgeInsets.only(
+                                left: width * 0.05,
+                                right: width * 0.05,
+                                top: height * 0.04,
                               ),
                               child: Stack(
                                 children: [
                                   _buildCameraPreview(),
                                   if (!isRecording)
-                                    const Positioned(
-                                      top: 22,
-                                      left: 40.0,
-                                      right: 10.0,
+                                    Positioned(
+                                      top: height * 0.03,
+                                      left: width * 0.1,
+                                      right: width * 0.025,
                                       child: Text(
-                                        'Make sure your face is clearly visible\nDo not look left or right\nPlease look front of the camera',
+                                        'Make sure your face is clearly visible\nLook left or right\nPlease look front of the camera',
                                         style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: width * 0.04,
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -404,39 +408,39 @@ class _VideoRecordKYCScreenState extends State<VideoRecordKYCScreen> {
                                     ),
                                   if (isRecording)
                                     Positioned(
-                                      right: 40.0,
-                                      top: 10.0,
+                                      right: width * 0.1,
+                                      top: height * 0.015,
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.end,
                                         children: [
                                           Text(
                                             'Recording... ${_elapsedTime}s',
-                                            style: const TextStyle(
-                                              fontSize: 18,
+                                            style: TextStyle(
+                                              fontSize: width * 0.045,
                                               color: Colors.red,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          const SizedBox(height: 10),
+                                          SizedBox(height: height * 0.012),
                                           Icon(
                                             Icons.radio_button_checked,
                                             color: _isBlinking
                                                 ? Colors.red
                                                 : Colors.transparent,
-                                            size: 50,
+                                            size: width * 0.125,
                                           ),
                                           Text(
                                             'Date: ${DateFormat('yyyy-MM-dd').format(DateTime.now())}',
-                                            style: const TextStyle(
-                                              fontSize: 16,
+                                            style: TextStyle(
+                                              fontSize: width * 0.04,
                                               color: Colors.white,
                                             ),
                                           ),
                                           Text(
                                             'Time: ${DateFormat('HH:mm:ss').format(DateTime.now())}',
-                                            style: const TextStyle(
-                                              fontSize: 16,
+                                            style: TextStyle(
+                                              fontSize: width * 0.04,
                                               color: Colors.white,
                                             ),
                                           ),
@@ -447,7 +451,7 @@ class _VideoRecordKYCScreenState extends State<VideoRecordKYCScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: height * 0.012),
                           // Recording and switch camera buttons
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -462,9 +466,12 @@ class _VideoRecordKYCScreenState extends State<VideoRecordKYCScreen> {
                                   Icons.videocam,
                                   color: Colors.white,
                                 ),
-                                label: const Text(
+                                label: Text(
                                   'Start Recording\nव्हिडिओ रेकॉर्ड करा',
                                   textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: width * 0.04,
+                                  ),
                                 ),
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Color(0xFFF76048),
@@ -472,28 +479,35 @@ class _VideoRecordKYCScreenState extends State<VideoRecordKYCScreen> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30),
                                   ),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 40, vertical: 10),
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: width * 0.1,
+                                    vertical: height * 0.012,
+                                  ),
                                 ),
                               ),
-                              const SizedBox(width: 20),
+                              SizedBox(width: width * 0.05),
                               Column(
                                 children: [
                                   IconButton(
-                                    icon: const Icon(
+                                    icon: Icon(
                                       Icons.switch_camera_sharp,
                                       color: Color(0xFFF76048),
-                                      size: 40,
+                                      size: width * 0.1,
                                     ),
                                     onPressed:
                                         isRecording ? null : switchCamera,
                                   ),
-                                  const Text("कॅमेरा बदला"),
+                                  Text(
+                                    "कॅमेरा बदला",
+                                    style: TextStyle(
+                                      fontSize: width * 0.035,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ],
                           ),
-                          const SizedBox(height: 40),
+                          SizedBox(height: height * 0.05),
                         ],
                       ),
                     );
