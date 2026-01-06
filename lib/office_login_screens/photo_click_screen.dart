@@ -574,44 +574,44 @@ class _PhotoClickScreenState extends State<PhotoClickScreen> {
                       elevation: 5,
                     ),
                   ),
-                if (_image != null)
-                  ElevatedButton.icon(
-                    onPressed: _isLoading ? null : _showSubmitPhotoDialog,
-                    icon: _isLoading
-                        ? SizedBox(
-                            width: width * 0.06,
-                            height: width * 0.06,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                Colors.black,
-                              ),
-                            ),
-                          )
-                        : Icon(Icons.send, size: width * 0.06),
-                    label: Text(
-                      _isLoading
-                          ? 'Please Wait...\nकृपया प्रतीक्षा करा...'
-                          : 'Submit Photo\nफोटो सबमिट करा',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: width * 0.045,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: _isLoading ? Colors.grey : Colors.yellow,
-                      foregroundColor: Colors.black,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: width * 0.1,
-                        vertical: height * 0.015,
-                      ),
-                      elevation: 5,
-                    ),
-                  ),
+                // if (_image != null)
+                //   ElevatedButton.icon(
+                //     onPressed: _isLoading ? null : _showSubmitPhotoDialog,
+                //     icon: _isLoading
+                //         ? SizedBox(
+                //             width: width * 0.06,
+                //             height: width * 0.06,
+                //             child: CircularProgressIndicator(
+                //               strokeWidth: 2,
+                //               valueColor: AlwaysStoppedAnimation<Color>(
+                //                 Colors.black,
+                //               ),
+                //             ),
+                //           )
+                //         : Icon(Icons.send, size: width * 0.06),
+                //     label: Text(
+                //       _isLoading
+                //           ? 'Please Wait...\nकृपया प्रतीक्षा करा...'
+                //           : 'Submit Photo\nफोटो सबमिट करा',
+                //       textAlign: TextAlign.center,
+                //       style: TextStyle(
+                //         fontSize: width * 0.045,
+                //         fontWeight: FontWeight.bold,
+                //       ),
+                //     ),
+                //     style: ElevatedButton.styleFrom(
+                //       backgroundColor: _isLoading ? Colors.grey : Colors.yellow,
+                //       foregroundColor: Colors.black,
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(30),
+                //       ),
+                //       padding: EdgeInsets.symmetric(
+                //         horizontal: width * 0.1,
+                //         vertical: height * 0.015,
+                //       ),
+                //       elevation: 5,    
+                //     ),
+                //   ),
 
                 SizedBox(height: height * 0.02),
               ],
