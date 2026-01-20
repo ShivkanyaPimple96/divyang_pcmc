@@ -1,58 +1,21 @@
 import 'dart:io';
 
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/Home_Screen.dart';
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/search_aadhar_no_login_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/Home_Screen.dart';
 
-import 'provider/DeviceInfoProvider.dart';
-import 'provider/SettingProvider.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MultiProvider(
-      providers: [
-        ChangeNotifierProvider.value(
-          value: DeviceInfoProvider(),
-        ),
-        ChangeNotifierProvider.value(
-          value: SettingProvider(),
-        ),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        // title: 'Marvis Auth',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        // home: const SearchAadharNoLoginScreen(),
-        home: const HomeScreen(),
-      )));
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const HomeScreen(),
+    ),
+  );
 }
-
-// import 'dart:io';
-
-// import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/Home_Screen.dart';
-// import 'package:flutter/material.dart';
-
-// void main() {
-//   HttpOverrides.global = MyHttpOverrides();
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: '',
-//       debugShowCheckedModeBanner: false,
-//       home: const HomeScreen(),
-//     );
-//   }
-// }
 
 class MyHttpOverrides extends HttpOverrides {
   @override

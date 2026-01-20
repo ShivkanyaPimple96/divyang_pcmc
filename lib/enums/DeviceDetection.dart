@@ -1,5 +1,0 @@
-
-enum DeviceDetection {
-  DISCONNECTED,
-  CONNECTED
-}

@@ -15,6 +15,7 @@ class DivyangDetailesScreen extends StatefulWidget {
   final String aadhaarNumber;
   final String addresss;
   final String gender;
+  final String disabilityType;
 
   const DivyangDetailesScreen({
     super.key,
@@ -26,6 +27,7 @@ class DivyangDetailesScreen extends StatefulWidget {
     required this.addresss,
     required this.gender,
     required this.verificationStatus,
+    required this.disabilityType,
   });
 
   @override
@@ -322,10 +324,15 @@ class _DivyangDetailesScreenState extends State<DivyangDetailesScreen> {
                                 widget.gender.isNotEmpty) ...[
                               _buildInfoCard('Gender', widget.gender, width),
                             ],
+                            // if (_shouldShowUserData &&
+                            //     widget.disabilityType.isNotEmpty) ...[
+                            //   _buildInfoCard('DisabilityType',
+                            //       widget.disabilityType, width),
+                            // ],
 
                             // Only show form fields if verification is NOT in progress and NOT approved
                             if (_shouldShowFormFields) ...[
-                              SizedBox(height: height * 0.025),
+                              SizedBox(height: height * 0.020),
                               Text(
                                 'Enter Your Aadhar Number(आधार क्रमांक टाका):',
                                 style: TextStyle(

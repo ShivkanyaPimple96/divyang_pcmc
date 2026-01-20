@@ -166,6 +166,7 @@ class _EnterAadharNumberScreenState extends State<EnterAadharNumberScreen> {
                     aadhaarNumber: responseData['AadhaarNumber'] ?? '',
                     addresss: responseData['Addresss'] ?? '',
                     gender: responseData['Gender'] ?? '',
+                    disabilityType: responseData['DisabilityType'] ?? '',
                     verificationStatus:
                         responseData['VerificationStatus'] ?? '',
                   ),

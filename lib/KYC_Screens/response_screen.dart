@@ -88,6 +88,7 @@ class ResponseScreen extends StatelessWidget {
                 aadhaarNumber: fetchedAadhaarNumber,
                 gender: fetchedGender,
                 addresss: fetchedAddress,
+                disabilityType: disabilityType,
                 verificationStatus: fetchedVerificationStatus,
               ),
             ),
