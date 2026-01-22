@@ -459,19 +459,23 @@ class _PhotoClickKYCScreenState extends State<PhotoClickKYCScreen> {
                             Expanded(
                               child: Center(
                                 child: _image == null
-                                    ? Container(
-                                        width: width * 0.625,
-                                        height: width * 0.625,
-                                        color: Colors.blueGrey,
-                                        child: Center(
-                                          child: Text(
-                                            'No Image Captured',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: width * 0.04,
-                                            ),
-                                          ),
-                                        ),
+                                    // ? Container(
+                                    //     width: width * 0.625,
+                                    //     height: width * 0.625,
+                                    //     color: Colors.blueGrey,
+                                    //     child: Center(
+                                    //       child: Text(
+                                    //         'No Image Captured',
+                                    //         style: TextStyle(
+                                    //           color: Colors.white,
+                                    //           fontSize: width * 0.04,
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    //   )
+                                    ? Image.asset(
+                                        'assets/images/capture_image.jpeg',
+                                        fit: BoxFit.contain,
                                       )
                                     : Image.file(
                                         _image!,
@@ -486,7 +490,7 @@ class _PhotoClickKYCScreenState extends State<PhotoClickKYCScreen> {
                               child: ElevatedButton(
                                 onPressed: _getImage,
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFFF76048),
+                                  backgroundColor: Colors.green,
                                   foregroundColor: Colors.white,
                                   shape: RoundedRectangleBorder(
                                     borderRadius:

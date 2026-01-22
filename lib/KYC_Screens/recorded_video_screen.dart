@@ -317,11 +317,11 @@ class _VideoPlayerKYCScreenState extends State<VideoPlayerKYCScreen> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                SizedBox(height: height * 0.012),
+                SizedBox(height: height * 0.010),
                 Center(
                   child: Container(
-                    height: height * 0.36,
-                    width: width * 0.875,
+                    height: height * 0.25,
+                    width: width * 0.750,
                     decoration: BoxDecoration(
                       color: const Color(0xFFFDF7FD),
                       borderRadius: BorderRadius.circular(10),
@@ -329,14 +329,6 @@ class _VideoPlayerKYCScreenState extends State<VideoPlayerKYCScreen> {
                         color: const Color(0xFFF76048),
                         width: 2,
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0x9B9B9BC1),
-                          blurRadius: 10,
-                          spreadRadius: 0,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
                     ),
                     child: Center(
                       child: _controller.value.isInitialized
@@ -386,7 +378,8 @@ class _VideoPlayerKYCScreenState extends State<VideoPlayerKYCScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: height * 0.048),
+                SizedBox(height: height * 0.040),
+
                 ElevatedButton.icon(
                   onPressed: _isLoading ? null : () => submitVideo(context),
                   icon: _isLoading
@@ -396,23 +389,32 @@ class _VideoPlayerKYCScreenState extends State<VideoPlayerKYCScreen> {
                           child: CircularProgressIndicator(
                             strokeWidth: 2,
                             valueColor: AlwaysStoppedAnimation<Color>(
-                              Colors.white,
+                              Colors.black,
                             ),
                           ),
                         )
                       : SizedBox.shrink(),
-                  label: Text(
-                    _isLoading
-                        ? 'Please Wait...\nकृपया प्रतीक्षा करा...'
-                        : 'Submit video\nव्हिडिओ सबमिट करा',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: width * 0.045,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      letterSpacing: 1.2,
-                    ),
-                  ),
+                  label: _isLoading
+                      ? Text(
+                          'Please Wait...\nकृपया प्रतीक्षा करा...',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: width * 0.045,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            letterSpacing: 1.2,
+                          ),
+                        )
+                      : Text(
+                          'Submit video\nव्हिडिओ सबमिट करा',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: width * 0.045,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            letterSpacing: 1.2,
+                          ),
+                        ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
                         _isLoading ? Colors.grey : Color(0xFFF76048),
@@ -427,6 +429,46 @@ class _VideoPlayerKYCScreenState extends State<VideoPlayerKYCScreen> {
                     elevation: 5,
                   ),
                 ),
+                // ElevatedButton.icon(
+                //   onPressed: _isLoading ? null : () => submitVideo(context),
+                //   icon: _isLoading
+                //       ? SizedBox(
+                //           width: width * 0.05,
+                //           height: width * 0.05,
+                //           child: CircularProgressIndicator(
+                //             strokeWidth: 2,
+                //             valueColor: AlwaysStoppedAnimation<Color>(
+                //               Colors.black,
+                //             ),
+                //           ),
+                //         )
+                //       : SizedBox.shrink(),
+                //   label: Text(
+                //     _isLoading
+                //         ? 'Please Wait...\nकृपया प्रतीक्षा करा...'
+                //         : 'Submit video\nव्हिडिओ सबमिट करा',
+                //     textAlign: TextAlign.center,
+                //     style: TextStyle(
+                //       fontSize: width * 0.045,
+                //       fontWeight: FontWeight.bold,
+                //       color: Colors.white,
+                //       letterSpacing: 1.2,
+                //     ),
+                //   ),
+                //   style: ElevatedButton.styleFrom(
+                //     backgroundColor:
+                //         _isLoading ? Colors.grey : Color(0xFFF76048),
+                //     foregroundColor: Colors.white,
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(30),
+                //     ),
+                //     padding: EdgeInsets.symmetric(
+                //       horizontal: width * 0.1,
+                //       vertical: height * 0.012,
+                //     ),
+                //     elevation: 5,
+                //   ),
+                // ),
                 SizedBox(height: height * 0.012),
               ],
             ),

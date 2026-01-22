@@ -354,7 +354,7 @@ class _AadharVerificationKYCScreenState
           backgroundColor: const Color(0xFFF76048),
         ),
         body: SingleChildScrollView(
-          padding: EdgeInsets.all(width * 0.04),
+          padding: EdgeInsets.all(width * 0.07),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -365,14 +365,6 @@ class _AadharVerificationKYCScreenState
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(width * 0.025),
                   border: Border.all(color: const Color(0xFFF76048), width: 2),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0x9B9B9BC1),
-                      blurRadius: 10,
-                      spreadRadius: 0,
-                      offset: Offset(0, 2),
-                    )
-                  ],
                 ),
                 child: Row(
                   children: [
@@ -463,43 +455,49 @@ class _AadharVerificationKYCScreenState
               ),
               SizedBox(height: height * 0.024),
               if (isOtpFieldVisible) ...[
-                Text(
-                  'Enter Aadhar OTP:',
-                  style: TextStyle(
-                    fontSize: width * 0.045,
-                    color: Colors.black54,
+                Center(
+                  child: Text(
+                    'Enter Aadhar OTP',
+                    style: TextStyle(
+                      fontSize: width * 0.045,
+                      color: Colors.black54,
+                    ),
                   ),
                 ),
                 SizedBox(height: height * 0.012),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(width * 0.025),
-                    border:
-                        Border.all(color: const Color(0xFFF76048), width: 2),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0x9B9B9BC1),
-                        blurRadius: 10,
-                        spreadRadius: 0,
-                        offset: Offset(0, 2),
+                Center(
+                  child: Container(
+                    height: height * 0.070,
+                    width: width * 0.75,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(width * 0.025),
+                      border:
+                          Border.all(color: const Color(0xFFF76048), width: 2),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x9B9B9BC1),
+                          blurRadius: 10,
+                          spreadRadius: 0,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: width * 0.03),
+                      child: TextField(
+                        controller: otpController,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'OTP टाका',
+                          hintStyle: TextStyle(
+                              color: Colors.grey[600], fontSize: width * 0.04),
+                          counterText: '',
+                        ),
+                        style: TextStyle(fontSize: width * 0.045),
+                        keyboardType: TextInputType.number,
+                        maxLength: 6,
                       ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: width * 0.03),
-                    child: TextField(
-                      controller: otpController,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'OTP टाका',
-                        hintStyle: TextStyle(
-                            color: Colors.grey[600], fontSize: width * 0.04),
-                        counterText: '',
-                      ),
-                      style: TextStyle(fontSize: width * 0.045),
-                      keyboardType: TextInputType.number,
-                      maxLength: 6,
                     ),
                   ),
                 ),

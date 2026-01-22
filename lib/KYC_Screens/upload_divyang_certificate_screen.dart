@@ -379,6 +379,17 @@ Your life certificate is currently under verification. You will receive your cer
                                 padding: EdgeInsets.all(width * 0.02),
                                 child: ElevatedButton(
                                   onPressed: _getImage,
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.green,
+                                    foregroundColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.1,
+                                      vertical: height * 0.015,
+                                    ),
+                                  ),
                                   child: const Text(
                                     "Click Divyang UDID Certificate \nदिव्यांग दाखल्याचा फोटो काढा",
                                     textAlign: TextAlign.center,
