@@ -176,7 +176,8 @@ class _UploadDivyangCertificateScreenState
       request.fields['AadhaarNumber'] = widget.aadhaarNumber;
       request.fields['DisabilityType'] = widget.disabilityType;
       request.fields['DisabilityPercentage'] = widget.disabilityPercentage;
-      request.fields['uniqueKey'] = widget.udidNumber;
+      request.fields['UDIDNumber'] = widget.udidNumber;
+
       request.fields['LastSubmit'] = "Submitted";
 
       if (compressedIncomeCertificateFile != null) {

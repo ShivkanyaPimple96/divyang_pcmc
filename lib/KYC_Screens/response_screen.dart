@@ -73,6 +73,8 @@ class ResponseScreen extends StatelessWidget {
           String fetchedVerificationStatus =
               userData['VerificationStatus'] ?? verificationStatus;
           String fetchedFullName = userData['Name'] ?? fullName;
+          String fetchedUniqueKey = userData['uniqueKey'] ?? fullName;
+          String fetchedUDIDNumber = userData['UDIDNumber'] ?? udidNumber;
           String fetchedMobileNumber = userData['MobileNo'] ?? mobileNumber;
           String fetchedUrl = userData['avakNo'] ?? '';
 
@@ -85,9 +87,11 @@ class ResponseScreen extends StatelessWidget {
                 mobileNumber: fetchedMobileNumber,
                 fullName: fetchedFullName,
                 url: fetchedUrl,
+                uniqueKey: fetchedUniqueKey,
                 aadhaarNumber: fetchedAadhaarNumber,
                 gender: fetchedGender,
                 addresss: fetchedAddress,
+                udidNumber: fetchedUDIDNumber,
                 disabilityType: disabilityType,
                 verificationStatus: fetchedVerificationStatus,
               ),
