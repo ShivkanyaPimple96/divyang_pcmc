@@ -19,6 +19,7 @@ class VideoRecordKYCScreen extends StatefulWidget {
   final String ppoNumber;
   final String mobileNumber;
   final String addressEnter;
+  final String avakNumber;
   final String gender;
   final String fullName;
   final String udidNumber;
@@ -44,6 +45,7 @@ class VideoRecordKYCScreen extends StatefulWidget {
     required this.udidNumber,
     required this.disabilityType,
     required this.disabilityPercentage,
+    required this.avakNumber,
   });
 
   @override
@@ -201,6 +203,7 @@ class _VideoRecordKYCScreenState extends State<VideoRecordKYCScreen> {
             gender: widget.gender,
             fullName: widget.fullName,
             isFrontCamera: isFrontCamera,
+            avakNumber: widget.avakNumber,
             udidNumber: widget.udidNumber,
             disabilityType: widget.disabilityType,
             disabilityPercentage: widget.disabilityPercentage,

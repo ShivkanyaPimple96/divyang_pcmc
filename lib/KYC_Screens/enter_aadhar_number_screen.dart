@@ -122,7 +122,8 @@ class _EnterAadharNumberScreenState extends State<EnterAadharNumberScreen> {
             final responseData = data['Data'];
             final verificationStatusNote =
                 responseData['VerificationStatusNote'] ?? '';
-            final uidiNumber = responseData['uniqueKey'] ?? '';
+            final avakNumber = responseData['avakNo'] ?? '';
+            final uniqueKey = responseData['uniqueKey'] ?? '';
             final disabilityType = responseData['DisabilityType'] ?? '';
             final disabilityPercentage =
                 responseData['DisabilityPercentage'] ?? '';
@@ -142,11 +143,14 @@ class _EnterAadharNumberScreenState extends State<EnterAadharNumberScreen> {
                     url: responseData['Url'] ?? '',
                     aadhaarNumber: responseData['AadhaarNumber'] ?? '',
                     addresss: responseData['Addresss'] ?? '',
+                    avakNumber: responseData['avakNo'] ?? '',
+                    uniqueKey: responseData['uniqueKey'] ?? '',
+                    udidNumber: responseData['UDIDNumber'] ?? '',
                     gender: responseData['Gender'] ?? '',
                     bankName: responseData['BankName'] ?? '',
                     verificationStatus:
                         responseData['VerificationStatus'] ?? '',
-                    uidiNumber: responseData['uniqueKey'] ?? '',
+                    // uniqueKey: responseData['uniqueKey'] ?? '',
                     disabilityType: responseData['DisabilityType'] ?? '',
                     disabilityPercentage:
                         responseData['DisabilityPercentage'] ?? '',
@@ -167,6 +171,7 @@ class _EnterAadharNumberScreenState extends State<EnterAadharNumberScreen> {
                     addresss: responseData['Addresss'] ?? '',
                     udidNumber: responseData['UDIDNumber'] ?? '',
                     uniqueKey: responseData['uniqueKey'] ?? '',
+                    avakNumber: responseData['avakNo'] ?? '',
                     gender: responseData['Gender'] ?? '',
                     disabilityType: responseData['DisabilityType'] ?? '',
                     verificationStatus:

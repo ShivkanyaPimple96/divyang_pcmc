@@ -19,6 +19,7 @@ class PhotoClickKYCScreen extends StatefulWidget {
   final String disabilityType;
   final String disabilityPercentage;
   final String lastSubmit;
+  final String avakNumber;
 
   const PhotoClickKYCScreen({
     super.key,
@@ -32,6 +33,7 @@ class PhotoClickKYCScreen extends StatefulWidget {
     required this.udidNumber,
     required this.disabilityType,
     required this.disabilityPercentage,
+    required this.avakNumber,
   });
 
   @override
@@ -179,6 +181,7 @@ class _PhotoClickKYCScreenState extends State<PhotoClickKYCScreen> {
       request.fields['Latitude'] = _latitude ?? '';
       request.fields['Longitude'] = _longitude ?? '';
       request.fields['Address'] = _address ?? '';
+      request.fields['LiveAddress'] = _address ?? '';
       request.fields['LastSubmit'] = "";
 
       request.files.add(await http.MultipartFile.fromPath(
@@ -357,6 +360,7 @@ class _PhotoClickKYCScreenState extends State<PhotoClickKYCScreen> {
             mobileNumber: widget.mobileNumber,
             addressEnter: widget.addressEnter,
             gender: widget.gender,
+            avakNumber: widget.avakNumber,
             fullName: widget.fullName,
             udidNumber: widget.udidNumber,
             disabilityType: widget.disabilityType,

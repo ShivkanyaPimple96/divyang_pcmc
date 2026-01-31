@@ -11,9 +11,12 @@ class ViewButtonPensionerDetailesScreen extends StatefulWidget {
   final String aadhaarNumber;
   final String addresss;
   final String gender;
-  final String uidiNumber;
+  final String uniqueKey;
   final String disabilityType;
   final String disabilityPercentage;
+
+  final String avakNumber;
+  final String udidNumber;
 
   final String bankName;
 
@@ -28,9 +31,11 @@ class ViewButtonPensionerDetailesScreen extends StatefulWidget {
     required this.addresss,
     required this.gender,
     required this.bankName,
-    required this.uidiNumber,
+    required this.uniqueKey,
     required this.disabilityType,
     required this.disabilityPercentage,
+    required this.avakNumber,
+    required this.udidNumber,
   });
 
   @override
@@ -93,11 +98,12 @@ class _ViewButtonPensionerDetailesScreenState
         builder: (context) => AadharVerificationKYCScreen(
           ppoNumber: widget.ppoNumber,
           fullName: widget.fullName,
+          avakNumber: widget.avakNumber,
           mobileNumber: widget.mobileNumber,
           aadharNumber: _aadharController.text,
           addressEnter: _addressController.text,
           gender: _genderController.text,
-          udidNumber: widget.uidiNumber,
+          udidNumber: widget.udidNumber,
           disabilityType: widget.disabilityType,
           disabilityPercentage: widget.disabilityPercentage,
         ),

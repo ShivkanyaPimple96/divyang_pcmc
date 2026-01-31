@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/divyang_detailes_officelogin_screen.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +48,14 @@ class _EnterAadharNumberScreenLoginState
     try {
       final url = Uri.parse(
           'http://103.224.247.133:8085/BSUPN/rest/service/getbyAadharNumber?aadharnumber=$aadharNumber');
-      final response = await http.get(url);
+
+      final response = await http.get(url).timeout(
+        const Duration(seconds: 30),
+        onTimeout: () {
+          throw Exception(
+              'Connection timeout. Please check your internet connection.');
+        },
+      );
 
       print('Status Code: ${response.statusCode}');
       print('Response Body: ${response.body}');
@@ -66,27 +75,120 @@ class _EnterAadharNumberScreenLoginState
           _showPopupMessage(
             'Note',
             'Aadhar data is not found for this number\nPlease contact this number: 8888888888',
-            // data['message'] ?? 'Data not found for this Aadhar number',
           );
         }
       } else {
         setState(() {
-          _errorMessage =
-              'Failed to fetch data. Status code: ${response.statusCode}';
+          _errorMessage = 'Failed to fetch data. ';
         });
+        _showPopupMessage(
+          'Note',
+          'Failed to fetch data. Please try again.',
+        );
       }
-    } catch (e) {
+    } on SocketException catch (e) {
+      print('SocketException: ${e.toString()}');
       setState(() {
-        _errorMessage = 'Error: ${e.toString()}';
+        _errorMessage = 'No internet connection';
       });
-
-      _showPopupMessage('Exception', e.toString());
+      _showPopupMessage(
+        'Network Error',
+        'No internet connection. Please check your network settings and try again.',
+      );
+    } on TimeoutException catch (e) {
+      print('TimeoutException: ${e.toString()}');
+      setState(() {
+        _errorMessage = 'Connection timeout';
+      });
+      _showPopupMessage(
+        'Timeout Note',
+        'Connection timeout. Please check your internet connection and try again.',
+      );
+    } on http.ClientException catch (e) {
+      print('ClientException: ${e.toString()}');
+      setState(() {
+        _errorMessage = 'Connection failed';
+      });
+      _showPopupMessage(
+        'Connection Note',
+        'Failed to connect to server. Please check your internet connection and try again.',
+      );
+    } on FormatException catch (e) {
+      print('FormatException: ${e.toString()}');
+      setState(() {
+        _errorMessage = 'Invalid response format';
+      });
+      _showPopupMessage(
+        'Note',
+        'Received invalid response from server. Please try again later.',
+      );
+    } catch (e) {
+      print('Exception: ${e.toString()}');
+      setState(() {
+        _errorMessage = 'An error occurred';
+      });
+      _showPopupMessage(
+        'Note',
+        'An unexpected error occurred. Please try again.',
+      );
     } finally {
       setState(() {
         _isLoading = false;
       });
     }
   }
+
+  // Future<void> _callAadharAPI(String aadharNumber) async {
+  //   setState(() {
+  //     _isLoading = true;
+  //     _apiResponse = null;
+  //     _errorMessage = '';
+  //   });
+
+  //   try {
+  //     final url = Uri.parse(
+  //         'http://103.224.247.133:8085/BSUPN/rest/service/getbyAadharNumber?aadharnumber=$aadharNumber');
+  //     final response = await http.get(url);
+
+  //     print('Status Code: ${response.statusCode}');
+  //     print('Response Body: ${response.body}');
+
+  //     if (response.statusCode == 200) {
+  //       final Map<String, dynamic> data = json.decode(response.body);
+  //       setState(() {
+  //         _apiResponse = data;
+  //       });
+
+  //       // Check the response code from the API
+  //       if (data['code'] == "200") {
+  //         // Call POST API before navigation
+  //         await _storeAadharData(data);
+  //       } else if (data['code'] == "201") {
+  //         // Show popup with the message
+  //         _showPopupMessage(
+  //           'Note',
+  //           'Aadhar data is not found for this number\nPlease contact this number: 8888888888',
+  //           // data['message'] ?? 'Data not found for this Aadhar number',
+  //         );
+  //       }
+  //     } else {
+  //       setState(() {
+  //         _errorMessage =
+  //             'Failed to fetch data. Status code: Failed to fetch data';
+  //       });
+  //     }
+  //   } catch (e) {
+  //     setState(() {
+  //       _errorMessage = 'Note: Failed to fetch data';
+  //     });
+
+  //     _showPopupMessage('Exception', e.toString());
+  //   } finally {
+  //     setState(() {
+  //       _isLoading = false;
+  //     });
+  //   }
+  // }
 
   Future<void> _storeAadharData(Map<String, dynamic> data) async {
     try {
@@ -136,13 +238,14 @@ class _EnterAadharNumberScreenLoginState
       } else {
         // POST API failed
         _showPopupMessage(
-          'Error',
-          'Failed to store data. Status code: ${response.statusCode}',
+          'Note',
+          'Failed to store data. Please try again.',
         );
       }
     } catch (e) {
       print('Store Error: ${e.toString()}');
-      _showPopupMessage('Exception', 'Failed to store data: ${e.toString()}');
+      // _showPopupMessage('Exception', 'Failed to store data: ${e.toString()}');
+      _showPopupMessage('Exception', 'Failed to store data: Please try again.');
     }
   }
 

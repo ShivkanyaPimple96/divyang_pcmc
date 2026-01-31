@@ -237,8 +237,7 @@ class InAppUpdateService {
   Future<void> openPlayStore(BuildContext context) async {
     try {
       // Android Play Store URL for PMC Life Certificate app
-      const String packageName =
-          'com.example.divyang_pimpri_chinchwad_municipal_corporation';
+      const String packageName = 'com.pcmc.divyang_lifecertificate';
       const String playStoreUrl =
           'https://play.google.com/store/apps/details?id=$packageName';
 

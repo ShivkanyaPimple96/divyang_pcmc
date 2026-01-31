@@ -16,7 +16,7 @@ class AadharVerificationKYCScreen extends StatefulWidget {
   final String udidNumber;
   final String disabilityType;
   final String disabilityPercentage;
-
+  final String avakNumber;
   const AadharVerificationKYCScreen({
     super.key,
     required this.fullName,
@@ -28,6 +28,7 @@ class AadharVerificationKYCScreen extends StatefulWidget {
     required this.udidNumber,
     required this.disabilityType,
     required this.disabilityPercentage,
+    required this.avakNumber,
   });
 
   @override
@@ -291,6 +292,7 @@ class _AadharVerificationKYCScreenState
                     MaterialPageRoute(
                       builder: (context) => UploadAadharPhotos(
                         aadhaarNumber: widget.aadharNumber,
+                        avakNumber: widget.avakNumber,
                         ppoNumber: widget.ppoNumber,
                         mobileNumber: widget.mobileNumber,
                         addressEnter: widget.addressEnter,
@@ -309,6 +311,7 @@ class _AadharVerificationKYCScreenState
                     MaterialPageRoute(
                       builder: (context) => UploadAadharPhotos(
                         aadhaarNumber: widget.aadharNumber,
+                        avakNumber: widget.avakNumber,
                         ppoNumber: widget.ppoNumber,
                         mobileNumber: widget.mobileNumber,
                         addressEnter: widget.addressEnter,
@@ -718,6 +721,7 @@ class _AadharVerificationKYCScreenState
                           builder: (context) => PhotoClickKYCScreen(
                             aadhaarNumber: widget.aadharNumber,
                             ppoNumber: widget.ppoNumber,
+                            avakNumber: widget.avakNumber,
                             mobileNumber: widget.mobileNumber,
                             addressEnter: widget.addressEnter,
                             gender: widget.gender,

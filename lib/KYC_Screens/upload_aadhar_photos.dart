@@ -20,7 +20,7 @@ class UploadAadharPhotos extends StatefulWidget {
   final String disabilityType;
   final String disabilityPercentage;
   final String lastSubmit;
-
+  final String avakNumber;
   const UploadAadharPhotos({
     super.key,
     required this.aadhaarNumber,
@@ -33,6 +33,7 @@ class UploadAadharPhotos extends StatefulWidget {
     required this.udidNumber,
     required this.disabilityType,
     required this.disabilityPercentage,
+    required this.avakNumber,
   });
 
   @override
@@ -287,6 +288,7 @@ class _UploadAadharPhotosState extends State<UploadAadharPhotos> {
           aadhaarNumber: widget.aadhaarNumber,
           ppoNumber: widget.ppoNumber,
           mobileNumber: widget.mobileNumber,
+          avakNumber: widget.avakNumber,
           addressEnter: widget.addressEnter,
           gender: widget.gender,
           fullName: widget.fullName,

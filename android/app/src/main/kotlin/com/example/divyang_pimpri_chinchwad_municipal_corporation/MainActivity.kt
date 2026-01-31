@@ -1,4 +1,4 @@
-package com.example.divyang_pimpri_chinchwad_municipal_corporation
+package com.pcmc.divyang_lifecertificate
 
 import io.flutter.embedding.android.FlutterActivity
 

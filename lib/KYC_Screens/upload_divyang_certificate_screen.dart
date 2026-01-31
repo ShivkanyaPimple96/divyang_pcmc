@@ -21,7 +21,7 @@ class UploadDivyangCertificateScreen extends StatefulWidget {
   final String udidNumber;
   final String disabilityType;
   final String disabilityPercentage;
-
+  final String avakNumber;
   const UploadDivyangCertificateScreen({
     super.key,
     required this.aadhaarNumber,
@@ -34,6 +34,7 @@ class UploadDivyangCertificateScreen extends StatefulWidget {
     required this.udidNumber,
     required this.disabilityType,
     required this.disabilityPercentage,
+    required this.avakNumber,
   });
 
   @override
@@ -177,6 +178,7 @@ class _UploadDivyangCertificateScreenState
       request.fields['DisabilityType'] = widget.disabilityType;
       request.fields['DisabilityPercentage'] = widget.disabilityPercentage;
       request.fields['UDIDNumber'] = widget.udidNumber;
+      request.fields['avakNo'] = widget.avakNumber;
 
       request.fields['LastSubmit'] = "Submitted";
 
@@ -213,6 +215,7 @@ class _UploadDivyangCertificateScreenState
               gender: widget.gender,
               fullName: widget.fullName,
               udidNumber: widget.udidNumber,
+              avakNumber: widget.avakNumber,
               disabilityType: widget.disabilityType,
               disabilityPercentage: widget.disabilityPercentage,
               message:
@@ -232,6 +235,7 @@ Your life certificate is currently under verification. You will receive your cer
           context,
           MaterialPageRoute(
             builder: (context) => ResponseScreen(
+              avakNumber: widget.avakNumber,
               udidNumber: widget.udidNumber,
               disabilityType: widget.disabilityType,
               disabilityPercentage: widget.disabilityPercentage,
@@ -257,6 +261,7 @@ Your life certificate is currently under verification. You will receive your cer
         MaterialPageRoute(
           builder: (context) => ResponseScreen(
             udidNumber: widget.udidNumber,
+            avakNumber: widget.avakNumber,
             disabilityType: widget.disabilityType,
             disabilityPercentage: widget.disabilityPercentage,
             aadhaarNumber: widget.aadhaarNumber,

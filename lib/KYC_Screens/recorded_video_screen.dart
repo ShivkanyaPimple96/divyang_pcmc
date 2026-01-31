@@ -24,6 +24,7 @@ class VideoPlayerKYCScreen extends StatefulWidget {
   final String disabilityType;
   final String disabilityPercentage;
   final String lastSubmit;
+  final String avakNumber;
 
   const VideoPlayerKYCScreen({
     super.key,
@@ -41,6 +42,7 @@ class VideoPlayerKYCScreen extends StatefulWidget {
     required this.udidNumber,
     required this.disabilityType,
     required this.disabilityPercentage,
+    required this.avakNumber,
   });
 
   @override
@@ -200,6 +202,7 @@ class _VideoPlayerKYCScreenState extends State<VideoPlayerKYCScreen> {
               addressEnter: widget.addressEnter,
               gender: widget.gender,
               fullName: widget.fullName,
+              avakNumber: widget.avakNumber,
               // ppoNumber: widget.ppoNumber,
               // videoPath: widget.videoPath,
               aadhaarNumber: widget.aadhaarNumber,
