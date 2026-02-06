@@ -274,6 +274,7 @@ class _DivyangDetailesScreenState extends State<DivyangDetailesScreen> {
               addressEnter: _addressController.text,
               gender: _selectedGender!,
               udidNumber: _udidController.text,
+              uniqueKey: widget.uniqueKey,
               disabilityType: _selectedDisabilityType!,
               disabilityPercentage: _selectedDisabilityPercentage!,
             ),

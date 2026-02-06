@@ -81,8 +81,8 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
         setState(() {
           _isLoading = false;
         });
-        _showPopupMessage('Error',
-            'Network error. Please check your connection and try again.');
+        _showPopupMessage(
+            'Note', '  Please check your connection and try again.');
       }
     }
   }

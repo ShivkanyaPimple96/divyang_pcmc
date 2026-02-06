@@ -103,6 +103,7 @@ class _ViewButtonPensionerDetailesScreenState
           aadharNumber: _aadharController.text,
           addressEnter: _addressController.text,
           gender: _genderController.text,
+          uniqueKey: widget.uniqueKey,
           udidNumber: widget.udidNumber,
           disabilityType: widget.disabilityType,
           disabilityPercentage: widget.disabilityPercentage,

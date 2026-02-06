@@ -19,6 +19,7 @@ class UploadDivyangCertificateScreen extends StatefulWidget {
   final String gender;
   final String fullName;
   final String udidNumber;
+  final String uniqueKey;
   final String disabilityType;
   final String disabilityPercentage;
   final String avakNumber;
@@ -35,6 +36,7 @@ class UploadDivyangCertificateScreen extends StatefulWidget {
     required this.disabilityType,
     required this.disabilityPercentage,
     required this.avakNumber,
+    required this.uniqueKey,
   });
 
   @override
@@ -179,6 +181,9 @@ class _UploadDivyangCertificateScreenState
       request.fields['DisabilityPercentage'] = widget.disabilityPercentage;
       request.fields['UDIDNumber'] = widget.udidNumber;
       request.fields['avakNo'] = widget.avakNumber;
+      request.fields['Address'] = widget.addressEnter;
+
+      // request.fields['LiveAddress'] = widget.liveAddress;
 
       request.fields['LastSubmit'] = "Submitted";
 
@@ -215,6 +220,7 @@ class _UploadDivyangCertificateScreenState
               gender: widget.gender,
               fullName: widget.fullName,
               udidNumber: widget.udidNumber,
+              uniqueKey: widget.uniqueKey,
               avakNumber: widget.avakNumber,
               disabilityType: widget.disabilityType,
               disabilityPercentage: widget.disabilityPercentage,
@@ -237,6 +243,7 @@ Your life certificate is currently under verification. You will receive your cer
             builder: (context) => ResponseScreen(
               avakNumber: widget.avakNumber,
               udidNumber: widget.udidNumber,
+              uniqueKey: widget.uniqueKey,
               disabilityType: widget.disabilityType,
               disabilityPercentage: widget.disabilityPercentage,
               aadhaarNumber: widget.aadhaarNumber,
@@ -261,6 +268,7 @@ Your life certificate is currently under verification. You will receive your cer
         MaterialPageRoute(
           builder: (context) => ResponseScreen(
             udidNumber: widget.udidNumber,
+            uniqueKey: widget.uniqueKey,
             avakNumber: widget.avakNumber,
             disabilityType: widget.disabilityType,
             disabilityPercentage: widget.disabilityPercentage,

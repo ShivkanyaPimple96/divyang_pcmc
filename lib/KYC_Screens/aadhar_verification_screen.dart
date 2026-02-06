@@ -14,6 +14,7 @@ class AadharVerificationKYCScreen extends StatefulWidget {
   final String ppoNumber;
   final String gender;
   final String udidNumber;
+  final String uniqueKey;
   final String disabilityType;
   final String disabilityPercentage;
   final String avakNumber;
@@ -29,6 +30,7 @@ class AadharVerificationKYCScreen extends StatefulWidget {
     required this.disabilityType,
     required this.disabilityPercentage,
     required this.avakNumber,
+    required this.uniqueKey,
   });
 
   @override
@@ -299,6 +301,7 @@ class _AadharVerificationKYCScreenState
                         gender: widget.gender,
                         fullName: widget.fullName,
                         udidNumber: widget.udidNumber,
+                        uniqueKey: widget.uniqueKey,
                         disabilityType: widget.disabilityType,
                         disabilityPercentage: widget.disabilityPercentage,
                         lastSubmit: "",
@@ -318,6 +321,7 @@ class _AadharVerificationKYCScreenState
                         gender: widget.gender,
                         fullName: widget.fullName,
                         udidNumber: widget.udidNumber,
+                        uniqueKey: widget.uniqueKey,
                         disabilityType: widget.disabilityType,
                         disabilityPercentage: widget.disabilityPercentage,
                         lastSubmit: "",
@@ -727,6 +731,7 @@ class _AadharVerificationKYCScreenState
                             gender: widget.gender,
                             fullName: widget.fullName,
                             udidNumber: widget.udidNumber,
+                            uniqueKey: widget.uniqueKey,
                             disabilityType: widget.disabilityType,
                             disabilityPercentage: widget.disabilityPercentage,
                             lastSubmit: "",

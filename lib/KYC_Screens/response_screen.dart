@@ -3,7 +3,6 @@ import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/divya
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:path/path.dart';
 
 class ResponseScreen extends StatelessWidget {
   final String aadhaarNumber;
@@ -15,6 +14,7 @@ class ResponseScreen extends StatelessWidget {
   final bool success;
   final String verificationStatus;
   final String udidNumber;
+  final String uniqueKey;
   final String disabilityType;
   final String disabilityPercentage;
   final String avakNumber;
@@ -33,6 +33,7 @@ class ResponseScreen extends StatelessWidget {
     required this.disabilityType,
     required this.disabilityPercentage,
     required this.avakNumber,
+    required this.uniqueKey,
   });
 
   Future<void> _fetchUserDataAndNavigate(BuildContext context) async {
@@ -76,7 +77,7 @@ class ResponseScreen extends StatelessWidget {
           String fetchedVerificationStatus =
               userData['VerificationStatus'] ?? verificationStatus;
           String fetchedFullName = userData['Name'] ?? fullName;
-          String fetchedUniqueKey = userData['uniqueKey'] ?? fullName;
+          String fetchedUniqueKey = userData['uniqueKey'] ?? uniqueKey;
           String fetchedUDIDNumber = userData['UDIDNumber'] ?? udidNumber;
           String fetchedMobileNumber = userData['MobileNo'] ?? mobileNumber;
           String fetchedAvakNumber = userData['avakNo'] ?? avakNumber;

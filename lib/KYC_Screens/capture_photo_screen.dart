@@ -16,6 +16,7 @@ class PhotoClickKYCScreen extends StatefulWidget {
   final String gender;
   final String fullName;
   final String udidNumber;
+  final String uniqueKey;
   final String disabilityType;
   final String disabilityPercentage;
   final String lastSubmit;
@@ -34,6 +35,7 @@ class PhotoClickKYCScreen extends StatefulWidget {
     required this.disabilityType,
     required this.disabilityPercentage,
     required this.avakNumber,
+    required this.uniqueKey,
   });
 
   @override
@@ -363,6 +365,7 @@ class _PhotoClickKYCScreenState extends State<PhotoClickKYCScreen> {
             avakNumber: widget.avakNumber,
             fullName: widget.fullName,
             udidNumber: widget.udidNumber,
+            uniqueKey: widget.uniqueKey,
             disabilityType: widget.disabilityType,
             disabilityPercentage: widget.disabilityPercentage,
             lastSubmit: "",

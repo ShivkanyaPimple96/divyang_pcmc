@@ -544,7 +544,7 @@ class _SearchAadharNoLoginScreenState extends State<SearchAadharNoLoginScreen> {
     );
   }
 
-  Widget _buildDetailRow(String label, dynamic value) {
+  Widget _buildDetailRow(String label, dynamic value) { 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(

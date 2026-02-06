@@ -84,16 +84,8 @@ class ResponseLoginScreen extends StatelessWidget {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SearchAadharNoLoginScreen(
-                                  // aadharNumber: "",
-                                  // mobileNumber: mobileNumber,
-                                  // fullName: fullName,
-                                  // url: "",
-                                  // aadhaarNumber: "",
-                                  // gender: "",
-                                  // addresss: addressEnter,
-                                  // verificationStatus: verificationStatus,
-                                  )),
+                              builder: (context) =>
+                                  SearchAadharNoLoginScreen()),
                           (Route<dynamic> route) => false,
                         );
 
