@@ -72,10 +72,10 @@ class _EnterAadharNumberScreenLoginState
           await _storeAadharData(data);
         } else if (data['code'] == "201") {
           // Show popup with the message
-          _showPopupMessage(
-            'Note',
-            'Aadhar data is not found for this number\nPlease contact this number: 8888888888',
-          );
+          _showPopupMessage('Note',
+              'Aadhar Number Not Found.Please contact with this numner 9156808105.\n आधार नंबर सापडला नाही. कृपया या नंबर वर संपर्क करा 9156808105.'
+              // 'Aadhar data is not found for this number\nPlease contact this number: 8888888888',
+              );
         }
       } else {
         setState(() {

@@ -399,7 +399,8 @@ class _EnterAadharNumberScreenState extends State<EnterAadharNumberScreen> {
           showErrorDialog(errorMessage);
         }
       } else if (showErrors) {
-        showErrorDialog('Aadhar Number Not Found\n आधार नंबर सापडला नाही');
+        showErrorDialog(
+            'Aadhar Number Not Found.Please contact with this numner 9156808105.\n आधार नंबर सापडला नाही. कृपया या नंबर वर संपर्क करा 9156808105.');
       }
     } catch (e) {
       if (showErrors) {
