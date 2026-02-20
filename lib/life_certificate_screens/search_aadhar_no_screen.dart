@@ -43,7 +43,7 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
       }
 
       final Uri uri = Uri.https(
-        'divyangpcmc.altwise.in',
+        'lc.pcmcdivyang.com',
         '/api/aadhar/KnowYourAadharNumber',
         queryParams,
       );

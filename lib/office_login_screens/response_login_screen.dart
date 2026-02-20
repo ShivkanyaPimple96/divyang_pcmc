@@ -1,3 +1,4 @@
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/Home_Screen.dart';
 import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/search_aadhar_no_login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -81,20 +82,23 @@ class ResponseLoginScreen extends StatelessWidget {
                     const SizedBox(width: 10),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  SearchAadharNoLoginScreen()),
-                          (Route<dynamic> route) => false,
-                        );
-
-                        // Navigator.pushReplacement(
+                        // Navigator.pushAndRemoveUntil(
                         //   context,
-                        //   MaterialPageRoute(builder: (context) => SplashScreen()),
+                        //   MaterialPageRoute(
+                        //       builder: (context) =>
+                        //           SearchAadharNoLoginScreen()),
+                        //   (Route<dynamic> route) => false,
+                        // );
+
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: success ? Colors.green : Colors.red,
+                        backgroundColor: success
+                            ? const Color.fromRGBO(76, 175, 80, 1)
+                            : Colors.red,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12.0),
                         ),

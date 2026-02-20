@@ -3,7 +3,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:camera/camera.dart';
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/recorded_video_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/recorded_video_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';

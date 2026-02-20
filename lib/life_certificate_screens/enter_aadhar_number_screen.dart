@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/divyang_detailes_screen.dart';
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/search_aadhar_no_screen.dart';
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/view_button_pensioner_detailes_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/divyang_detailes_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/search_aadhar_no_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/view_button_pensioner_detailes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -31,6 +31,7 @@ class _EnterAadharNumberScreenState extends State<EnterAadharNumberScreen> {
   bool _isMobileSubmitted = false;
   bool _isAadharSubmitted = false;
   bool _isLoadingAadharNumber = false;
+  bool _isMobileEditable = false; // Start as editable by default
   bool _apiError = false;
   String _apiErrorMessage = '';
   String _fullName = '';
@@ -96,7 +97,7 @@ class _EnterAadharNumberScreenState extends State<EnterAadharNumberScreen> {
 
       try {
         final apiUrl =
-            'http://divyangpcmc.altwise.in/api/aadhar/SubmitOtpUsingAadhaarNumber?AadhaarNumber=${_aadharNumberController.text}&MobileNo=${_mobileController.text}&Otp=${_otpController.text}';
+            'https://lc.pcmcdivyang.com/api/aadhar/SubmitOtpUsingAadhaarNumber?AadhaarNumber=${_aadharNumberController.text}&MobileNo=${_mobileController.text}&Otp=${_otpController.text}';
         print('Calling OTP Verification API: $apiUrl');
 
         final response = await CustomHttpClient.get(apiUrl);
@@ -227,7 +228,7 @@ class _EnterAadharNumberScreenState extends State<EnterAadharNumberScreen> {
 
       try {
         final apiUrl =
-            'http://divyangpcmc.altwise.in/api/aadhar/GetOtpUsingMobileNo?AadhaarNumber=${_aadharNumberController.text}&MobileNo=${_mobileController.text}';
+            'https://lc.pcmcdivyang.com/api/aadhar/GetOtpUsingMobileNo?AadhaarNumber=${_aadharNumberController.text}&MobileNo=${_mobileController.text}';
         print('Calling API: $apiUrl');
 
         final response = await CustomHttpClient.get(apiUrl);
@@ -301,7 +302,7 @@ class _EnterAadharNumberScreenState extends State<EnterAadharNumberScreen> {
 
     try {
       final apiUrl =
-          'http://divyangpcmc.altwise.in/api/aadhar/GetOtpUsingMobileNo?AadhaarNumber=${_aadharNumberController.text}&MobileNo=${_mobileController.text}';
+          'https://lc.pcmcdivyang.com/api/aadhar/GetOtpUsingMobileNo?AadhaarNumber=${_aadharNumberController.text}&MobileNo=${_mobileController.text}';
       print('Calling Resend OTP API: $apiUrl');
 
       final response = await CustomHttpClient.get(apiUrl);
@@ -375,7 +376,7 @@ class _EnterAadharNumberScreenState extends State<EnterAadharNumberScreen> {
 
     try {
       final response = await CustomHttpClient.get(
-        'http://divyangpcmc.altwise.in/api/aadhar/GetDetailsUsingAadhaarNumber?AadhaarNumber=$aadharNumber',
+        'https://lc.pcmcdivyang.com/api/aadhar/GetDetailsUsingAadhaarNumber?AadhaarNumber=$aadharNumber',
       );
 
       print('Response status: ${response.statusCode}');
@@ -384,14 +385,28 @@ class _EnterAadharNumberScreenState extends State<EnterAadharNumberScreen> {
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         if (data['success'] == true) {
+          // setState(() {
+          //   _fullName = data['data']['FullName'] ?? '';
+          //   _apiMobileNumber = data['data']['MobileNumber'] ?? '';
+          //   _isAadharSubmitted = true;
+
+          //   // If mobile number is available from API, set it in the controller
+          //   if (_apiMobileNumber.isNotEmpty) {
+          //     _mobileController.text = _apiMobileNumber;
+          //   }
+          // });
           setState(() {
             _fullName = data['data']['FullName'] ?? '';
             _apiMobileNumber = data['data']['MobileNumber'] ?? '';
             _isAadharSubmitted = true;
 
-            // If mobile number is available from API, set it in the controller
             if (_apiMobileNumber.isNotEmpty) {
+              // Mobile number from API → pre-fill and LOCK the field
               _mobileController.text = _apiMobileNumber;
+              _isMobileEditable = false; // 🔒 Show Edit button first
+            } else {
+              // No mobile number from API → keep field open for manual entry
+              _isMobileEditable = true; // ✏️ Allow typing directly
             }
           });
         } else if (showErrors) {
@@ -655,56 +670,112 @@ class _EnterAadharNumberScreenState extends State<EnterAadharNumberScreen> {
                   Center(
                     child: Container(
                       height: height * 0.075,
-                      width: width * 0.625,
+                      width: width * 0.80,
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color:
+                            _isMobileEditable ? Colors.white : Colors.grey[100],
                         borderRadius: BorderRadius.circular(width * 0.025),
                         border: Border.all(
-                          color: const Color(0xFFF76048),
+                          color: _isMobileEditable
+                              ? Colors.green
+                              : const Color(0xFFF76048),
                           width: 2,
                         ),
                       ),
-                      child: Padding(
-                        padding: EdgeInsets.only(top: height * 0.012),
-                        child: TextFormField(
-                          controller: _mobileController,
-                          enabled:
-                              !_isMobileSubmitted && _apiMobileNumber.isEmpty,
-                          keyboardType: TextInputType.phone,
-                          textAlign: TextAlign.center,
-                          textAlignVertical: TextAlignVertical.center,
-                          style: TextStyle(
-                            fontSize: width * 0.0625,
-                            color: Colors.black,
-                          ),
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                            LengthLimitingTextInputFormatter(10),
-                          ],
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Enter mobile number',
-                            hintStyle: TextStyle(
-                              color: Colors.grey[600],
-                              fontSize: width * 0.045,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              controller: _mobileController,
+                              enabled: _isMobileEditable && !_isMobileSubmitted,
+                              keyboardType: TextInputType.phone,
+                              textAlign: TextAlign.center,
+                              textAlignVertical: TextAlignVertical.center,
+                              style: TextStyle(
+                                fontSize: width * 0.055,
+                                fontWeight: FontWeight.bold,
+                                color: _isMobileEditable
+                                    ? Colors.black
+                                    : Colors.black54,
+                              ),
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly,
+                                LengthLimitingTextInputFormatter(10),
+                              ],
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: 'Enter mobile number',
+                                hintStyle: TextStyle(
+                                  color: Colors.grey[600],
+                                  fontSize: width * 0.045,
+                                ),
+                                contentPadding: EdgeInsets.zero,
+                                isDense: true,
+                                counterText: '',
+                              ),
+                              validator: (value) {
+                                if (!_isMobileSubmitted) {
+                                  if (_apiMobileNumber.isEmpty &&
+                                      (value == null || value.isEmpty)) {
+                                    return '  Please enter mobile number';
+                                  }
+                                  if (_apiMobileNumber.isEmpty &&
+                                      !RegExp(r'^[0-9]{10}$')
+                                          .hasMatch(value!)) {
+                                    return '  Please Enter 10 digit mobile number';
+                                  }
+                                }
+                                return null;
+                              },
                             ),
-                            contentPadding: EdgeInsets.zero,
-                            isDense: true,
                           ),
-                          validator: (value) {
-                            if (!_isMobileSubmitted) {
-                              if (_apiMobileNumber.isEmpty &&
-                                  (value == null || value.isEmpty)) {
-                                return '  Please enter mobile number';
-                              }
-                              if (_apiMobileNumber.isEmpty &&
-                                  !RegExp(r'^[0-9]{10}$').hasMatch(value!)) {
-                                return '  Please Enter 10 digit mobile number';
-                              }
-                            }
-                            return null;
-                          },
-                        ),
+
+                          // ✅ Edit / Done button - only visible before OTP is submitted
+                          if (!_isMobileSubmitted)
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _isMobileEditable = !_isMobileEditable;
+                                });
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 4),
+                                decoration: BoxDecoration(
+                                  color: _isMobileEditable
+                                      ? Colors.green.withOpacity(0.1)
+                                      : Colors.blue.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      _isMobileEditable
+                                          ? Icons.check_circle
+                                          : Icons.edit,
+                                      color: _isMobileEditable
+                                          ? Colors.green
+                                          : Colors.blue,
+                                      size: 18,
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      _isMobileEditable ? 'Done' : 'Edit',
+                                      style: TextStyle(
+                                        color: _isMobileEditable
+                                            ? Colors.green
+                                            : Colors.blue,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
                     ),
                   ),

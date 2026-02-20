@@ -1,5 +1,5 @@
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/aadhar_verification_screen.dart';
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/view_certificate_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/aadhar_verification_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/view_certificate_screen.dart';
 import 'package:flutter/material.dart';
 
 class ViewButtonPensionerDetailesScreen extends StatefulWidget {

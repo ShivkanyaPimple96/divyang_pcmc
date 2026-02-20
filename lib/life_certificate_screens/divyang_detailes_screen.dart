@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
 
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/aadhar_verification_screen.dart';
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/view_certificate_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/aadhar_verification_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/view_certificate_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 
 class DivyangDetailesScreen extends StatefulWidget {
   final String aadharNumber;
@@ -117,6 +119,14 @@ class _DivyangDetailesScreenState extends State<DivyangDetailesScreen> {
     if (widget.gender.isNotEmpty) {
       _selectedGender = widget.gender;
     }
+  }
+
+  // ✅ NEW: Creates an HTTP client that accepts self-signed certificates
+  IOClient _createTrustingClient() {
+    final httpClient = HttpClient()
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+    return IOClient(httpClient);
   }
 
   @override
@@ -237,8 +247,7 @@ class _DivyangDetailesScreenState extends State<DivyangDetailesScreen> {
       print('Sending request: ${json.encode(requestBody)}');
 
       final response = await http.post(
-        Uri.parse(
-            'https://divyangpcmc.altwise.in/api/v1/aadhar/SubmitUserDetails'),
+        Uri.parse('https://lc.pcmcdivyang.com/api/v1/aadhar/SubmitUserDetails'),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -358,12 +367,16 @@ class _DivyangDetailesScreenState extends State<DivyangDetailesScreen> {
                             SizedBox(height: height * 0.02),
 
                             // Show additional fields if status is Verification In Progress or Approved
-                            if (_shouldShowUserData &&
-                                widget.aadhaarNumber.isNotEmpty) ...[
-                              _buildInfoCard('Aadhaar Number',
-                                  widget.aadhaarNumber, width),
-                              SizedBox(height: height * 0.02),
-                            ],
+
+                            _buildInfoCard(
+                                'Aadhaar Number', widget.aadhaarNumber, width),
+                            SizedBox(height: height * 0.02),
+                            // if (_shouldShowUserData &&
+                            //     widget.aadhaarNumber.isNotEmpty) ...[
+                            //   _buildInfoCard('Aadhaar Number',
+                            //       widget.aadhaarNumber, width),
+                            //   SizedBox(height: height * 0.02),
+                            // ],
 
                             // Address field with edit option for read-only view
                             if (_shouldShowUserData &&
@@ -438,76 +451,76 @@ class _DivyangDetailesScreenState extends State<DivyangDetailesScreen> {
                             // Show form fields if verification is NOT in progress and NOT approved
                             if (_shouldShowFormFields) ...[
                               SizedBox(height: height * 0.020),
-                              Text(
-                                'Enter Your Aadhar Number(आधार क्रमांक टाका):',
-                                style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: width * 0.038,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(height: height * 0.012),
-                              TextFormField(
-                                controller: _aadharController,
-                                keyboardType: TextInputType.number,
-                                maxLength: 12,
-                                decoration: InputDecoration(
-                                  hintText: 'Enter Aadhaar number',
-                                  hintStyle: TextStyle(fontSize: width * 0.035),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  contentPadding: EdgeInsets.symmetric(
-                                    horizontal: width * 0.04,
-                                    vertical: height * 0.015,
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.circular(width * 0.025),
-                                    borderSide: BorderSide(
-                                        color:
-                                            (_formSubmitted && _showAadharError)
-                                                ? Colors.red
-                                                : const Color(0xFFF76048),
-                                        width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.circular(width * 0.025),
-                                    borderSide: BorderSide(
-                                        color:
-                                            (_formSubmitted && _showAadharError)
-                                                ? Colors.red
-                                                : const Color(0xFFF76048),
-                                        width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.circular(width * 0.025),
-                                    borderSide: BorderSide(
-                                        color:
-                                            (_formSubmitted && _showAadharError)
-                                                ? Colors.red
-                                                : Colors.green,
-                                        width: 2),
-                                  ),
-                                  errorText: (_formSubmitted &&
-                                          _aadharController.text.isEmpty)
-                                      ? 'Aadhaar number is required'
-                                      : (_formSubmitted &&
-                                              _aadharController.text.length !=
-                                                  12)
-                                          ? 'Aadhaar must be exactly 12 digits'
-                                          : null,
-                                ),
-                                onChanged: (value) {
-                                  if (_formSubmitted) {
-                                    setState(() {
-                                      _showAadharError =
-                                          value.isEmpty || value.length != 12;
-                                    });
-                                  }
-                                },
-                              ),
+                              // Text(
+                              //   'Enter Your Aadhar Number(आधार क्रमांक टाका):',
+                              //   style: TextStyle(
+                              //     color: Colors.black54,
+                              //     fontSize: width * 0.038,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
+                              // SizedBox(height: height * 0.012),
+                              // TextFormField(
+                              //   controller: _aadharController,
+                              //   keyboardType: TextInputType.number,
+                              //   maxLength: 12,
+                              //   decoration: InputDecoration(
+                              //     hintText: 'Enter Aadhaar number',
+                              //     hintStyle: TextStyle(fontSize: width * 0.035),
+                              //     filled: true,
+                              //     fillColor: Colors.white,
+                              //     contentPadding: EdgeInsets.symmetric(
+                              //       horizontal: width * 0.04,
+                              //       vertical: height * 0.015,
+                              //     ),
+                              //     border: OutlineInputBorder(
+                              //       borderRadius:
+                              //           BorderRadius.circular(width * 0.025),
+                              //       borderSide: BorderSide(
+                              //           color:
+                              //               (_formSubmitted && _showAadharError)
+                              //                   ? Colors.red
+                              //                   : const Color(0xFFF76048),
+                              //           width: 2),
+                              //     ),
+                              //     enabledBorder: OutlineInputBorder(
+                              //       borderRadius:
+                              //           BorderRadius.circular(width * 0.025),
+                              //       borderSide: BorderSide(
+                              //           color:
+                              //               (_formSubmitted && _showAadharError)
+                              //                   ? Colors.red
+                              //                   : const Color(0xFFF76048),
+                              //           width: 2),
+                              //     ),
+                              //     focusedBorder: OutlineInputBorder(
+                              //       borderRadius:
+                              //           BorderRadius.circular(width * 0.025),
+                              //       borderSide: BorderSide(
+                              //           color:
+                              //               (_formSubmitted && _showAadharError)
+                              //                   ? Colors.red
+                              //                   : Colors.green,
+                              //           width: 2),
+                              //     ),
+                              //     errorText: (_formSubmitted &&
+                              //             _aadharController.text.isEmpty)
+                              //         ? 'Aadhaar number is required'
+                              //         : (_formSubmitted &&
+                              //                 _aadharController.text.length !=
+                              //                     12)
+                              //             ? 'Aadhaar must be exactly 12 digits'
+                              //             : null,
+                              //   ),
+                              //   onChanged: (value) {
+                              //     if (_formSubmitted) {
+                              //       setState(() {
+                              //         _showAadharError =
+                              //             value.isEmpty || value.length != 12;
+                              //       });
+                              //     }
+                              //   },
+                              // ),
                               SizedBox(height: height * 0.025),
 
                               // Address field - show with edit button if pre-populated
@@ -1030,7 +1043,7 @@ class _DivyangDetailesScreenState extends State<DivyangDetailesScreen> {
                                       ),
                                     ),
                                     child: Text(
-                                      'Complete Your KYC\nतुमची केवायसी पूर्ण करा',
+                                      'Complete Your life certificate \nतुमचे जीवन प्रमाणपत्र पूर्ण करा',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: width * 0.04,
@@ -1057,7 +1070,7 @@ class _DivyangDetailesScreenState extends State<DivyangDetailesScreen> {
                                       ),
                                     ),
                                     child: Text(
-                                      'Re-Complete Your KYC\nतुमची केवायसी पूर्ण करा',
+                                      'Re-Complete Your life certificate \nतुमचे जीवन प्रमाणपत्र पूर्ण करा',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: width * 0.04,

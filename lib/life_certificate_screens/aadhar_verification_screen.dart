@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/capture_photo_screen.dart';
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/upload_aadhar_photos.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/capture_photo_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/upload_aadhar_photos.dart';
 import 'package:flutter/material.dart';
 
 class AadharVerificationKYCScreen extends StatefulWidget {
@@ -75,7 +75,7 @@ class _AadharVerificationKYCScreenState
             (X509Certificate cert, String host, int port) => true;
 
       final String apiUrl =
-          'https://divyangpcmc.altwise.in/api/aadhar/GetAadharOtp?AadhaarNumber=${widget.aadharNumber}';
+          'https://lc.pcmcdivyang.com/api/aadhar/GetAadharOtp?AadhaarNumber=${widget.aadharNumber}';
 
       final request = await client.getUrl(Uri.parse(apiUrl));
       final response = await request.close();
@@ -129,7 +129,7 @@ class _AadharVerificationKYCScreenState
             (X509Certificate cert, String host, int port) => true;
 
       final String apiUrl =
-          'https://divyangpcmc.altwise.in/api/aadhar/SubmitAadharOtp?AadharNumber=${widget.aadharNumber}&ClientId=$clientId&Otp=${otpController.text}';
+          'https://lc.pcmcdivyang.com/api/aadhar/SubmitAadharOtp?AadharNumber=${widget.aadharNumber}&ClientId=$clientId&Otp=${otpController.text}';
 
       final request = await client.getUrl(Uri.parse(apiUrl));
       final response = await request.close();

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/upload_divyang_certificate_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/upload_divyang_certificate_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
@@ -157,7 +157,7 @@ class _VideoPlayerKYCScreenState extends State<VideoPlayerKYCScreen> {
 
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('https://divyangpcmc.altwise.in/api/aadhar/SubmitAadharData'),
+        Uri.parse('https://lc.pcmcdivyang.com/api/aadhar/SubmitAadharData'),
       );
 
       // Adding fields to the request

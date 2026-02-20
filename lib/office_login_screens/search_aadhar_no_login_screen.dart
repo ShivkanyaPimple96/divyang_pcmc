@@ -52,7 +52,7 @@ class _SearchAadharNoLoginScreenState extends State<SearchAadharNoLoginScreen> {
 
   Future<void> _searchByAadharNumber() async {
     final Uri uri = Uri.https(
-      'divyangpcmc.altwise.in',
+      'lc.pcmcdivyang.com',
       '/api/aadhar/SearchByAadhaarNumber',
       {'aadhaarNo': _nameController.text.trim()},
     );
@@ -104,7 +104,7 @@ class _SearchAadharNoLoginScreenState extends State<SearchAadharNoLoginScreen> {
     };
 
     final Uri uri = Uri.https(
-      'divyangpcmc.altwise.in',
+      'lc.pcmcdivyang.com',
       '/api/aadhar/SearchByName',
       queryParams,
     );
@@ -148,7 +148,7 @@ class _SearchAadharNoLoginScreenState extends State<SearchAadharNoLoginScreen> {
     };
 
     final Uri uri = Uri.https(
-      'divyangpcmc.altwise.in',
+      'lc.pcmcdivyang.com',
       '/api/aadhar/SearchByName',
       queryParams,
     );
@@ -544,7 +544,7 @@ class _SearchAadharNoLoginScreenState extends State<SearchAadharNoLoginScreen> {
     );
   }
 
-  Widget _buildDetailRow(String label, dynamic value) { 
+  Widget _buildDetailRow(String label, dynamic value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(

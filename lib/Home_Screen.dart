@@ -1,4 +1,4 @@
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/enter_aadhar_number_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/enter_aadhar_number_screen.dart';
 import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/user_login_screen.dart';
 import 'package:divyang_pimpri_chinchwad_municipal_corporation/Services/inAppUpdateService.dart';
 import 'package:flutter/material.dart';

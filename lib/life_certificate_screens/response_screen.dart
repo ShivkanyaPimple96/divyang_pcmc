@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/divyang_detailes_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/divyang_detailes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -52,7 +52,7 @@ class ResponseScreen extends StatelessWidget {
       // Make API call
       final response = await http.get(
         Uri.parse(
-            'https://divyangpcmc.altwise.in/api/aadhar/GetDataUsingAadhaarNumber?AadhaarNumber=$aadhaarNumber'),
+            'https://lc.pcmcdivyang.com/api/aadhar/GetDataUsingAadhaarNumber?AadhaarNumber=$aadhaarNumber'),
         headers: {
           'Content-Type': 'application/json',
         },

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/KYC_Screens/vedio_record_screen.dart';
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/vedio_record_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:geocoding/geocoding.dart';
@@ -171,7 +171,7 @@ class _PhotoClickKYCScreenState extends State<PhotoClickKYCScreen> {
 
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('https://divyangpcmc.altwise.in/api/aadhar/SubmitAadharData'),
+        Uri.parse('https://lc.pcmcdivyang.com/api/aadhar/SubmitAadharData'),
       );
 
       request.fields['AadhaarNumber'] = widget.aadhaarNumber;
