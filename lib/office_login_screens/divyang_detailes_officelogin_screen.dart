@@ -31,7 +31,7 @@ class _DivyangDetailesOfficeloginScreenState
     extends State<DivyangDetailesOfficeloginScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _udidController = TextEditingController();
-  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _enterAddressController = TextEditingController();
   bool _isLoading = false;
   String? _selectedGender;
   String? _selectedDisabilityType;
@@ -81,7 +81,7 @@ class _DivyangDetailesOfficeloginScreenState
   @override
   void dispose() {
     _udidController.dispose();
-    _addressController.dispose();
+    _enterAddressController.dispose();
     super.dispose();
   }
 
@@ -106,7 +106,7 @@ class _DivyangDetailesOfficeloginScreenState
       });
     }
 
-    if (_addressController.text.isEmpty) {
+    if (_enterAddressController.text.isEmpty) {
       errorMessage ??= 'Please enter your address';
       isValid = false;
       setState(() {
@@ -200,7 +200,7 @@ class _DivyangDetailesOfficeloginScreenState
             uniqueKey: widget.uniqueKey,
             lastSubmit: "",
             udidNumber: _udidController.text,
-            address: _addressController.text,
+            enterAddress: _enterAddressController.text,
             gender: _selectedGender!,
             disabilityType: _selectedDisabilityType!,
             disabilityPercentage: _selectedDisabilityPercentage!,
@@ -347,7 +347,7 @@ class _DivyangDetailesOfficeloginScreenState
                             ),
                             SizedBox(height: height * 0.012),
                             TextFormField(
-                              controller: _addressController,
+                              controller: _enterAddressController,
                               maxLines: 3,
                               style: TextStyle(fontSize: width * 0.04),
                               decoration: InputDecoration(
@@ -391,7 +391,7 @@ class _DivyangDetailesOfficeloginScreenState
                                   vertical: height * 0.015,
                                 ),
                                 errorText: (_formSubmitted &&
-                                        _addressController.text.isEmpty)
+                                        _enterAddressController.text.isEmpty)
                                     ? 'Address is required'
                                     : null,
                               ),

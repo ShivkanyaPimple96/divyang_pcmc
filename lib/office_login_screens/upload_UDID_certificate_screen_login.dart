@@ -23,6 +23,7 @@ class UploadUdidCertificateScreenLogin extends StatefulWidget {
   final String userId;
   final String avakNo;
   final String address;
+  final String enterAddress;
   final String uniqueKey;
 
   const UploadUdidCertificateScreenLogin({
@@ -39,6 +40,7 @@ class UploadUdidCertificateScreenLogin extends StatefulWidget {
     required this.avakNo,
     required this.address,
     required this.uniqueKey,
+    required this.enterAddress,
   });
 
   @override
@@ -195,11 +197,13 @@ class _UploadUdidCertificateScreenLoginState
       request.fields['AadhaarNumber'] = widget.adharNo;
       request.fields['DisabilityType'] = widget.disabilityType;
       request.fields['DisabilityPercentage'] = widget.disabilityPercentage;
-      request.fields['uniqueKey'] = widget.uididNumber;
+      request.fields['UDIDNumber'] = widget.uididNumber;
       request.fields['name'] = widget.name;
       request.fields['mobileNo'] = widget.mobileNo;
       request.fields['uniqueKey'] = widget.uniqueKey;
       request.fields['Gender'] = widget.gender;
+      request.fields['Address'] = widget.enterAddress;
+      request.fields['LiveAddress'] = widget.address;
       request.fields['LastSubmit'] = "Submitted";
 
       if (compressedIncomeCertificateFile != null) {

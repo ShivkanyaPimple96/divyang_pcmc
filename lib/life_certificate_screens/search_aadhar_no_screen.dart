@@ -243,14 +243,14 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
       children: [
         SizedBox(height: height * 0.012),
         Text(
-          'Choose how you want to search for Aadhar Number',
-          style: TextStyle(fontSize: width * 0.04, color: Colors.black),
+          'नाव किंवा आडनाव वापरून आधार क्रमांक शोधा',
+          style: TextStyle(fontSize: width * 0.05, color: Colors.black),
           textAlign: TextAlign.center,
         ),
         SizedBox(height: height * 0.05),
         _buildSelectionCard(
-          title: 'Search by First Name',
-          subtitle: 'Enter person\'s first name',
+          title: 'तुमचे नाव टाकून शोधा',
+          subtitle: 'पहिले नाव एंटर करा',
           icon: Icons.person,
           onTap: () => _selectNameType('first'),
           width: width,
@@ -258,8 +258,8 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
         ),
         SizedBox(height: height * 0.025),
         _buildSelectionCard(
-          title: 'Search by Last Name',
-          subtitle: 'Enter person\'s last name',
+          title: 'तुमचे आडनाव टाकून शोधा',
+          subtitle: 'आडनाव नाव एंटर करा',
           icon: Icons.person_outline,
           onTap: () => _selectNameType('last'),
           width: width,
@@ -350,8 +350,8 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
           children: [
             Text(
               _selectedNameType == 'first'
-                  ? 'Search by First Name'
-                  : 'Search by Last Name',
+                  ? 'तुमचे नाव टाकून शोधा'
+                  : 'तुमचे आडनाव टाकून शोधा',
               style: TextStyle(
                 fontSize: width * 0.045,
                 fontWeight: FontWeight.bold,
@@ -363,8 +363,8 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
               controller: _nameController,
               decoration: InputDecoration(
                 labelText: _selectedNameType == 'first'
-                    ? 'Enter First Name'
-                    : 'Enter Last Name',
+                    ? 'नाव टाकून शोधा'
+                    : 'आडनाव टाकून शोधा',
                 labelStyle: TextStyle(fontSize: width * 0.04),
                 border: const OutlineInputBorder(),
                 prefixIcon: Icon(Icons.person_search, size: width * 0.06),
@@ -385,7 +385,7 @@ class _AadharSearchScreenState extends State<AadharSearchScreen> {
                   ),
                 ),
                 child: Text(
-                  'Search Aadhar Number',
+                  'आधार क्रमांक शोधा',
                   style:
                       TextStyle(fontSize: width * 0.045, color: Colors.white),
                 ),

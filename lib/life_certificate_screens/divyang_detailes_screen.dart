@@ -21,6 +21,7 @@ class DivyangDetailesScreen extends StatefulWidget {
   final String uniqueKey;
   final String udidNumber;
   final String avakNumber;
+  final String disabilityPercentage;
 
   const DivyangDetailesScreen({
     super.key,
@@ -36,6 +37,7 @@ class DivyangDetailesScreen extends StatefulWidget {
     required this.uniqueKey,
     required this.udidNumber,
     required this.avakNumber,
+    required this.disabilityPercentage,
   });
 
   @override
@@ -118,6 +120,15 @@ class _DivyangDetailesScreenState extends State<DivyangDetailesScreen> {
     }
     if (widget.gender.isNotEmpty) {
       _selectedGender = widget.gender;
+    }
+
+    if (widget.disabilityPercentage.isNotEmpty) {
+      final pct = widget.disabilityPercentage.endsWith('%')
+          ? widget.disabilityPercentage
+          : '${widget.disabilityPercentage}%';
+      if (_disabilityPercentages.contains(pct)) {
+        _selectedDisabilityPercentage = pct;
+      }
     }
   }
 

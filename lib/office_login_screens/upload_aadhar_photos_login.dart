@@ -26,6 +26,7 @@ class UploadAadharPhotosLogin extends StatefulWidget {
   final String latitude;
   final String longitude;
   final String address;
+  final String enterAddress;
 
   const UploadAadharPhotosLogin({
     super.key,
@@ -44,6 +45,7 @@ class UploadAadharPhotosLogin extends StatefulWidget {
     required this.longitude,
     required this.address,
     required this.uididNumber,
+    required this.enterAddress,
   });
 
   @override
@@ -309,6 +311,7 @@ class _UploadAadharPhotosLoginState extends State<UploadAadharPhotosLogin> {
           avakNo: widget.avakNo,
           uniqueKey: widget.uniqueKey,
           address: widget.address,
+          enterAddress: widget.enterAddress,
           uididNumber: widget.uididNumber,
           disabilityType: widget.disabilityType,
           disabilityPercentage: widget.disabilityPercentage,

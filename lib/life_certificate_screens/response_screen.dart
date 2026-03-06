@@ -81,6 +81,7 @@ class ResponseScreen extends StatelessWidget {
           String fetchedUDIDNumber = userData['UDIDNumber'] ?? udidNumber;
           String fetchedMobileNumber = userData['MobileNo'] ?? mobileNumber;
           String fetchedAvakNumber = userData['avakNo'] ?? avakNumber;
+
           // String fetchedUrl = userData['Url'] ?? url;
           String fetchedUrl = userData['Url'] ?? '';
           // Navigate to DivyangDetailesScreen
@@ -98,6 +99,7 @@ class ResponseScreen extends StatelessWidget {
                 addresss: fetchedAddress,
                 udidNumber: fetchedUDIDNumber,
                 disabilityType: disabilityType,
+                disabilityPercentage: disabilityPercentage,
                 avakNumber: fetchedAvakNumber,
                 verificationStatus: fetchedVerificationStatus,
               ),

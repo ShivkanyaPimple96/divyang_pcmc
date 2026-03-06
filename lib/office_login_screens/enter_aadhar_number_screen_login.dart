@@ -697,7 +697,7 @@ class _EnterAadharNumberScreenLoginState
     return Column(
       children: [
         _buildSelectionCard(
-          title: 'Search by Aadhar Number',
+          title: 'आधार क्रमांकाने शोधा',
           subtitle: 'Enter 12-digit Aadhar number',
           icon: Icons.credit_card,
           onTap: () => _selectSearchType('aadhar'),
@@ -778,8 +778,8 @@ class _EnterAadharNumberScreenLoginState
               controller: _searchController,
               decoration: InputDecoration(
                 labelText: _selectedSearchType == 'name'
-                    ? 'Enter Name (First or Last)'
-                    : 'Enter Aadhar Number',
+                    ? 'नाव किंवा आडनाव टाका'
+                    : 'आधार क्रमांक टाका',
                 border: const OutlineInputBorder(),
                 prefixIcon: Icon(_selectedSearchType == 'aadhar'
                     ? Icons.credit_card

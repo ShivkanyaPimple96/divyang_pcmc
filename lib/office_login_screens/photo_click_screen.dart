@@ -10,7 +10,7 @@ import 'package:http/io_client.dart'; // ✅ NEW IMPORT
 import 'package:image_picker/image_picker.dart';
 
 class PhotoClickScreen extends StatefulWidget {
-  final String address;
+  final String enterAddress;
   final String gender;
   final String disabilityType;
   final String disabilityPercentage;
@@ -32,7 +32,7 @@ class PhotoClickScreen extends StatefulWidget {
     required this.name,
     required this.mobileNo,
     required this.uniqueKey,
-    required this.address,
+    required this.enterAddress,
     required this.gender,
     required this.disabilityType,
     required this.disabilityPercentage,
@@ -198,7 +198,8 @@ class _PhotoClickScreenState extends State<PhotoClickScreen> {
       request.fields['uniqueKey'] = widget.uniqueKey;
       request.fields['Latitude'] = _latitude ?? '';
       request.fields['Longitude'] = _longitude ?? '';
-      request.fields['Address'] = _address ?? '';
+      request.fields['Address'] =
+          widget.enterAddress; // ✅ Use enterAddress instead of _address
       request.fields['LiveAddress'] = _address ?? '';
       request.fields['LastSubmit'] = "";
 
@@ -395,6 +396,7 @@ class _PhotoClickScreenState extends State<PhotoClickScreen> {
             uniqueKey: widget.uniqueKey,
             latitude: _latitude!,
             longitude: _longitude!,
+            enterAddress: widget.enterAddress,
             address: _address!,
             gender: widget.gender,
             uididNumber: widget.udidNumber,
