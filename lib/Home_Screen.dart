@@ -1,6 +1,6 @@
+import 'package:divyang_pimpri_chinchwad_municipal_corporation/Services/inAppUpdateService.dart';
 import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/enter_aadhar_number_screen.dart';
 import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/user_login_screen.dart';
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/Services/inAppUpdateService.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -379,7 +379,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             SizedBox(height: height * 0.006),
                             Flexible(
                               child: Text(
-                                'Generate Life Certificate\n(जीवन प्रमाणपत्र तैयार करा)',
+                                'Generate Divyang Life Certificate\n(दिव्यांग जीवन प्रमाणपत्र तैयार करा)',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: width * 0.05,

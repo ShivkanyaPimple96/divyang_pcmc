@@ -350,28 +350,98 @@ class _ViewButtonPensionerDetailesScreenState
                             } else if (widget.verificationStatus ==
                                 'Verification In Progress') {
                               return ElevatedButton(
-                                onPressed: null, // Disabled button
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        title: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.info_outline,
+                                              color: Colors.orange,
+                                              size: 28,
+                                            ),
+                                            SizedBox(width: 10),
+                                            Expanded(
+                                              child: Text(
+                                                'Verification Status',
+                                                style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        content: Text(
+                                          'Your verification is in progress.\nतुमची पडताळणी प्रक्रियेत आहे.',
+                                          style: TextStyle(fontSize: 16),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text(
+                                              'OK',
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.green,
-                                  foregroundColor: Colors.blue,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 35, vertical: 8),
+                                  backgroundColor: Colors.lightBlue,
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: width * 0.1,
-                                    vertical: height * 0.012,
+                                    borderRadius: BorderRadius.circular(25),
                                   ),
                                 ),
-                                child: Text(
-                                  'Verification in Process\nसत्यापन प्रक्रियेत आहे',
+                                child: const Text(
+                                  "Verification In Progress\nपडताळणी प्रगतीपथावर आहे",
                                   style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: width * 0.04,
+                                    fontSize: 18,
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.white,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
                               );
+                              // return ElevatedButton(
+                              //   onPressed: null, // Disabled button
+                              //   style: ElevatedButton.styleFrom(
+                              //     backgroundColor: Colors.green,
+                              //     foregroundColor: Colors.blue,
+                              //     shape: RoundedRectangleBorder(
+                              //       borderRadius: BorderRadius.circular(30),
+                              //     ),
+                              //     padding: EdgeInsets.symmetric(
+                              //       horizontal: width * 0.1,
+                              //       vertical: height * 0.012,
+                              //     ),
+                              //   ),
+                              //   child: Text(
+                              //     'Verification in Process\nसत्यापन प्रक्रियेत आहे',
+                              //     style: TextStyle(
+                              //       color: Colors.white,
+                              //       fontSize: width * 0.04,
+                              //       fontWeight: FontWeight.bold,
+                              //     ),
+                              //     textAlign: TextAlign.center,
+                              //   ),
+                              // );
                             } else if (widget.verificationStatus ==
                                 'Application Approved') {
                               return ElevatedButton(
