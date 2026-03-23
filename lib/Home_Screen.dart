@@ -1,6 +1,6 @@
 import 'package:divyang_pimpri_chinchwad_municipal_corporation/Services/inAppUpdateService.dart';
 import 'package:divyang_pimpri_chinchwad_municipal_corporation/life_certificate_screens/enter_aadhar_number_screen.dart';
-import 'package:divyang_pimpri_chinchwad_municipal_corporation/office_login_screens/user_login_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -223,40 +223,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Expanded(
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: EdgeInsets.all(width * 0.025),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const UserLoginScreen()),
-                                );
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.yellow,
-                                foregroundColor: Colors.black,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                              child: Text(
-                                'Office Login',
-                                style: TextStyle(
-                                    fontSize: width * 0.04,
-                                    color: Colors.black),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
                       // Update buttons
                       Row(
                         mainAxisSize: MainAxisSize.min,

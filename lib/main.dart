@@ -4,6 +4,7 @@ import 'package:divyang_pimpri_chinchwad_municipal_corporation/Home_Screen.dart'
 
 import 'package:flutter/material.dart';
 
+// pcmc life certificate with kyc flow
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
